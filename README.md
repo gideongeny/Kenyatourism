@@ -13,6 +13,14 @@
 
 </div>
 
+## 📱 App Preview
+
+<p align="center">
+  <img src="docs/assets/screen_1.jpg" width="250" alt="Home Screen" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
+  <img src="docs/assets/screen_2.jpg" width="250" alt="Details Screen" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
+  <img src="docs/assets/screen_3.jpg" width="250" alt="Favorites" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
+</p>
+
 ## ✨ Overview
 
 **Kenya Tourism** is a world-class Android application showcasing the breathtaking beauty and diverse attractions of Kenya. Built with modern Android development practices, this app features stunning 3D animations, a premium UI/UX design inspired by Kenyan heritage, and comprehensive information about 100+ tourist destinations across the country.
