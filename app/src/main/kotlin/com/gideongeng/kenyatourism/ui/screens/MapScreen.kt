@@ -15,7 +15,6 @@ import com.gideongeng.kenyatourism.data.Destination
 import com.gideongeng.kenyatourism.ui.viewmodels.DestinationViewModel
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
-import org.osmdroid.tileprovider.tilesource.XYTileSource
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
@@ -24,26 +23,16 @@ import org.osmdroid.views.overlay.Marker
 fun MapScreen(viewModel: DestinationViewModel) {
     val destinations by viewModel.filteredDestinations.collectAsState(initial = emptyList())
     val context = LocalContext.current
-    var isSatellite by remember { mutableStateOf(false) }
     
     // Initialize OSM Configuration
     Configuration.getInstance().userAgentValue = context.packageName
-
-    val satelliteTileSource = remember {
-        XYTileSource(
-            "Esri",
-            1, 19, 256, ".jpg",
-            arrayOf("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/"),
-            "© Esri"
-        )
-    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         AndroidView(
             modifier = Modifier.fillMaxSize(),
             factory = { ctx ->
                 MapView(ctx).apply {
-                    setTileSource(if (isSatellite) satelliteTileSource else TileSourceFactory.MAPNIK)
+                    setTileSource(TileSourceFactory.MAPNIK)
                     controller.setZoom(7.0)
                     controller.setCenter(GeoPoint(-1.2921, 36.8219)) // Nairobi
                     setMultiTouchControls(true)
@@ -68,24 +57,8 @@ fun MapScreen(viewModel: DestinationViewModel) {
                 }
             },
             update = { view ->
-                view.setTileSource(if (isSatellite) satelliteTileSource else TileSourceFactory.MAPNIK)
-                view.invalidate()
+                // Update logic if needed
             }
         )
-
-        // Satellite Toggle Button
-        FloatingActionButton(
-            onClick = { isSatellite = !isSatellite },
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(16.dp),
-            containerColor = Color.White.copy(alpha = 0.8f),
-            contentColor = Color.Black
-        ) {
-            Icon(
-                imageVector = if (isSatellite) Icons.Default.Place else Icons.Default.Refresh,
-                contentDescription = "Toggle Satellite"
-            )
-        }
     }
 }
