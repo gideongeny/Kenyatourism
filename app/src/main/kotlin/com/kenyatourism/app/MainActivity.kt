@@ -12,9 +12,12 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -28,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,6 +46,10 @@ import com.kenyatourism.app.data.DestinationsRepository
 import com.kenyatourism.app.data.FavoritesManager
 import com.kenyatourism.app.ui.screens.FavoritesScreen
 import com.kenyatourism.app.ui.theme.*
+import com.kenyatourism.app.ui.theme.MaasaiRed
+import com.kenyatourism.app.ui.theme.SafariGreen
+import com.kenyatourism.app.ui.theme.SavannahGold
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     private lateinit var favoritesManager: FavoritesManager
@@ -142,37 +150,91 @@ fun BuyMeCoffeeButton(onClick: () -> Unit) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainDashboard(favoritesManager: FavoritesManager, onDestinationClick: (Destination) -> Unit) {
-    val destinations = DestinationsRepository.allDestinations
     val context = LocalContext.current
+    val allDestinations = DestinationsRepository.allDestinations
+    var searchQuery by remember { mutableStateOf("") }
+    var selectedCategory by remember { mutableStateOf("All") }
+    
+    val categories = listOf("All", "Wildlife Safari", "Beach", "Hiking", "Culture", "City")
 
-    Column(
+    val filteredDestinations = remember(searchQuery, selectedCategory) {
+        allDestinations.filter { 
+            (searchQuery.isEmpty() || it.name.contains(searchQuery, ignoreCase = true) || it.description.contains(searchQuery, ignoreCase = true)) &&
+            (selectedCategory == "All" || it.category.contains(selectedCategory, ignoreCase = true))
+        }
+    }
+
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
     ) {
-        DashboardHeader()
+        item {
+            DashboardHeader()
+        }
         
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            item {
-                Text(
-                    text = "Explore ${destinations.size} Amazing Destinations",
-                    style = MaterialTheme.typography.headlineMedium,
-                    color = MaterialTheme.colorScheme.onBackground
+        // Search & Categories Section
+        item {
+            Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+                // Search Bar
+                OutlinedTextField(
+                    value = searchQuery,
+                    onValueChange = { searchQuery = it },
+                    placeholder = { Text("Find Diani, Mara...", color = Color.Gray) },
+                    leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = MaasaiRed) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 12.dp)
+                        .background(Color.White, RoundedCornerShape(12.dp)),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = TextFieldDefaults.outlinedTextFieldColors(
+                        focusedBorderColor = MaasaiRed,
+                        unfocusedBorderColor = Color.LightGray
+                    )
                 )
+
+                // Animated Category Chips
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    contentPadding = PaddingValues(vertical = 4.dp)
+                ) {
+                    items(categories) { category ->
+                        val isSelected = selectedCategory == category
+                        FilterChip(
+                            selected = isSelected,
+                            onClick = { selectedCategory = category },
+                            label = { Text(category) },
+                            leadingIcon = null,
+                            colors = FilterChipDefaults.filterChipColors(
+                                selectedContainerColor = MaasaiRed,
+                                selectedLabelColor = Color.White
+                            )
+                        )
+                    }
+                }
             }
-            
-            items(destinations) { destination ->
-                DestinationCard(destination, favoritesManager, onClick = {
-                    onDestinationClick(destination)
-                    AdsManager.showInterstitial(context as ComponentActivity)
-                })
-            }
+        }
+
+        item {
+            Text(
+                text = "Featured Destinations",
+                style = MaterialTheme.typography.headlineMedium,
+                modifier = Modifier.padding(16.dp)
+            )
+        }
+
+        items(filteredDestinations) { destination ->
+            DestinationCard(destination, favoritesManager, onClick = { 
+                onDestinationClick(destination)
+                // AdsManager.showInterstitial(context as ComponentActivity)
+            })
+        }
+        
+        item {
+            Spacer(modifier = Modifier.height(80.dp)) // Bottom padding
         }
     }
 }
@@ -323,100 +385,171 @@ fun DestinationDetailScreen(
     onDismiss: () -> Unit
 ) {
     val isFavorite by favoritesManager.favorites.collectAsState()
-    
+    val context = LocalContext.current
+    val scrollState = rememberScrollState()
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            Box(modifier = Modifier.fillMaxWidth().height(300.dp)) {
-                val context = LocalContext.current
-                val drawableId = remember(destination.name) {
-                    DestinationsRepository.getDestinationDrawable(context, destination.name)
-                }
-                
-                AsyncImage(
-                    model = if (drawableId != 0) drawableId else destination.imageUrl,
-                    contentDescription = null,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier.fillMaxSize()
-                )
-                
-                IconButton(
-                    onClick = onDismiss,
-                    modifier = Modifier
-                        .align(Alignment.TopStart)
-                        .padding(16.dp)
-                        .background(Color.White.copy(alpha = 0.9f), CircleShape)
-                ) {
-                    Icon(Icons.Default.ArrowBack, "Back")
-                }
-                
-                IconButton(
-                    onClick = { favoritesManager.toggleFavorite(destination.id) },
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .padding(16.dp)
-                        .background(Color.White.copy(alpha = 0.9f), CircleShape)
-                ) {
-                    Icon(
-                        imageVector = if (isFavorite.contains(destination.id)) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                        contentDescription = "Favorite",
-                        tint = if (isFavorite.contains(destination.id)) Color.Red else Color.Gray
-                    )
-                }
-            }
-            
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scrollState)
             ) {
-                item {
-                    Text(
-                        text = destination.name,
-                        style = MaterialTheme.typography.headlineLarge,
-                        fontWeight = FontWeight.Bold
+                // Image Header
+                Box(modifier = Modifier.fillMaxWidth().height(350.dp)) {
+                    val drawableId = remember(destination.name) {
+                        DestinationsRepository.getDestinationDrawable(context, destination.name)
+                    }
+
+                    AsyncImage(
+                        model = if (drawableId != 0) drawableId else destination.imageUrl,
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
                     )
-                }
-                
-                item {
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Chip(text = destination.category)
-                        Chip(text = "★ ${destination.rating}")
-                        Chip(text = destination.region)
+                    
+                    // Top Bar with Back and Share
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                            .statusBarsPadding(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        IconButton(
+                            onClick = onDismiss,
+                            modifier = Modifier.background(Color.Black.copy(alpha = 0.5f), CircleShape)
+                        ) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
+                        }
+                        
+                        IconButton(
+                            onClick = {
+                                val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                                    type = "text/plain"
+                                    putExtra(Intent.EXTRA_SUBJECT, "Check out ${destination.name}!")
+                                    putExtra(Intent.EXTRA_TEXT, "I'm planning to visit ${destination.name} in Kenya! 🇰🇪 It looks amazing: ${destination.description}. Download the Tembea Kenya app to see more!")
+                                }
+                                context.startActivity(Intent.createChooser(shareIntent, "Share Destination"))
+                            },
+                            modifier = Modifier.background(Color.Black.copy(alpha = 0.5f), CircleShape)
+                        ) {
+                            Icon(Icons.Default.Share, contentDescription = "Share", tint = Color.White)
+                        }
                     }
                 }
-                
-                item {
+
+                // Content Body
+                Column(modifier = Modifier.padding(20.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = destination.name,
+                            style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold),
+                            modifier = Modifier.weight(1f)
+                        )
+                        IconButton(onClick = { favoritesManager.toggleFavorite(destination.id) }) {
+                            Icon(
+                                imageVector = if (isFavorite.contains(destination.id)) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                                contentDescription = "Favorite",
+                                tint = if (isFavorite.contains(destination.id)) MaasaiRed else Color.Gray
+                            )
+                        }
+                    }
+
+                    // Weather Widget (Simulated)
+                    WeatherWidget()
+
+                    Spacer(modifier = Modifier.height(16.dp))
+                    
                     Text(
                         text = destination.description,
-                        style = MaterialTheme.typography.bodyLarge
+                        style = MaterialTheme.typography.bodyLarge.copy(lineHeight = 24.sp),
+                        color = Color.DarkGray
                     )
-                }
-                
-                destination.bestTimeToVisit?.let { time ->
-                    item {
-                        InfoSection("Best Time to Visit", time)
-                    }
-                }
-                
-                if (destination.activities.isNotEmpty()) {
-                    item {
-                        Text("Activities", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-                        destination.activities.forEach { activity ->
-                            Text("• $activity", style = MaterialTheme.typography.bodyMedium)
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    // Action Buttons Row
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        // Location Button
+                        Button(
+                            onClick = {
+                                val lat = destination.latitude ?: -1.2921 
+                                val lon = destination.longitude ?: 36.8219
+                                val uri = Uri.parse("geo:$lat,$lon?q=$lat,$lon(${destination.name})")
+                                val mapIntent = Intent(Intent.ACTION_VIEW, uri)
+                                mapIntent.setPackage("com.google.android.apps.maps")
+                                context.startActivity(mapIntent)
+                            },
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(containerColor = SafariGreen)
+                        ) {
+                            Icon(Icons.Default.LocationOn, contentDescription = null)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("View Map")
+                        }
+
+                        // Video Button (if url exists)
+                        destination.videoUrl?.let { url ->
+                            Button(
+                                onClick = {
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+                                },
+                                modifier = Modifier.weight(1f),
+                                colors = ButtonDefaults.buttonColors(containerColor = MaasaiRed)
+                            ) {
+                                Icon(Icons.Default.PlayArrow, contentDescription = null)
+                                Spacer(modifier = Modifier.width(8.dp))
+                                Text("Watch Video")
+                            }
                         }
                     }
+                    
+                    Spacer(modifier = Modifier.height(50.dp))
                 }
-                
-                destination.latitude?.let { lat ->
-                    destination.longitude?.let { lon ->
-                        item {
-                            InfoSection("Location", "$lat, $lon")
-                        }
-                    }
-                }
+            }
+        }
+    }
+}
+
+@Composable
+fun WeatherWidget() {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 12.dp),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFE3F2FD))
+    ) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "☀️", 
+                style = MaterialTheme.typography.displayMedium
+            )
+            Spacer(modifier = Modifier.width(16.dp))
+            Column {
+                Text(
+                    text = "Current Weather",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = Color.Gray
+                )
+                Text(
+                    text = "28°C • Sunny",
+                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                    color = Color(0xFF1565C0)
+                )
             }
         }
     }
