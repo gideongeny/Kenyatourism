@@ -207,7 +207,9 @@ fun MainDashboard(favoritesManager: FavoritesManager, onDestinationClick: (Desti
                             selected = isSelected,
                             onClick = { selectedCategory = category },
                             label = { Text(category) },
-                            leadingIcon = null,
+                            leadingIcon = if (isSelected) {
+                                { Icon(Icons.Default.Check, contentDescription = null, modifier = Modifier.size(16.dp)) }
+                            } else null,
                             colors = FilterChipDefaults.filterChipColors(
                                 selectedContainerColor = MaasaiRed,
                                 selectedLabelColor = Color.White
@@ -229,7 +231,7 @@ fun MainDashboard(favoritesManager: FavoritesManager, onDestinationClick: (Desti
         items(filteredDestinations) { destination ->
             DestinationCard(destination, favoritesManager, onClick = { 
                 onDestinationClick(destination)
-                // AdsManager.showInterstitial(context as ComponentActivity)
+                AdsManager.showInterstitial(context as ComponentActivity)
             })
         }
         
