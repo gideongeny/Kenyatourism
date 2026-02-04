@@ -53,7 +53,7 @@ fun ChatScreen() {
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Powered by Gemini AI",
+                    text = "Safari AI Expert",
                     style = MaterialTheme.typography.labelSmall,
                     color = Color.White.copy(alpha = 0.7f)
                 )
@@ -110,10 +110,8 @@ fun ChatScreen() {
                                 delay(500)
                                 listState.animateScrollToItem(messages.size - 1)
                                 
-                                // Real Gemini AI Call
-                                val aiResponse = com.gideongeng.kenyatourism.ai.GeminiManager.getResponse(
-                                    com.gideongeng.kenyatourism.ai.GeminiManager.getSafariPrompt(userMsg)
-                                )
+                                // Real OpenAI AI Call
+                                val aiResponse = com.gideongeng.kenyatourism.ai.AiManager.getResponse(userMsg)
                                 
                                 messages = messages + Message(aiResponse, false)
                                 delay(100)

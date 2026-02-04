@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DestinationsRepository.initialize(this)
-        com.gideongeng.kenyatourism.ai.GeminiManager.initialize("AIzaSyDcwojg2ngA1ZW0-votJyiPp1MhV7MI1u0")
+        com.gideongeng.kenyatourism.ai.AiManager.initialize()
         AdsManager.initialize(this)
         AdsManager.loadInterstitial(this)
         favoritesManager = FavoritesManager(this)

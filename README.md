@@ -19,9 +19,10 @@
 ## 📱 App Preview
 
 <p align="center">
-  <img src="docs/assets/screen_1.jpg" width="250" alt="Home Screen" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
-  <img src="docs/assets/screen_2.jpg" width="250" alt="Safari AI Guide" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
-  <img src="docs/assets/screen_3.jpg" width="250" alt="Explore Map" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
+  <img src="docs/assets/home.png" width="200" alt="Home Screen" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
+  <img src="docs/assets/map.png" width="200" alt="Explore Map" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
+  <img src="docs/assets/ai.png" width="200" alt="Safari AI Guide" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
+  <img src="docs/assets/wishlist.png" width="200" alt="My Wishlist" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
 </p>
 
 ## ✨ "World Class" Transformation
@@ -30,10 +31,9 @@ This application has been transformed from a basic tourism app into a **World-Cl
 
 ## 🌟 Key Features
 
-### 🤖 Safari AI Guide (Gemini 1.5 Flash)
-- **Real-time AI Assistant**: Powered by the latest **Gemini 1.5 Flash** (SDK 0.9.0) for lightning-fast responses.
-- **Expert Safari Persona**: Meets users as 'Jambo', a professional guide with deep knowledge of Kenyan wildlife and culture.
-- **Swahili Integration**: Professional yet friendly tone using authentic Swahili phrases.
+### 🤖 Safari AI Guide (Stable AI Engine)
+- **Real-time AI Assistant**: Powered by a stable OpenAI-compatible engine for global reliability.
+- **Instant Access**: Works out-of-the-box for all users with zero configuration required.
 
 ### 🗺️ Fee-Free Global Mapping (OSM)
 - **OpenStreetMap Integration**: Switched from Google Maps to **OSMDroid** to eliminate API billing.
@@ -55,7 +55,7 @@ This application has been transformed from a basic tourism app into a **World-Cl
 |----------|------------|
 | **Core** | Kotlin, Coroutines, Flow |
 | **UI** | Jetpack Compose, Material 3 |
-| **AI** | Google Generative AI (Gemini 1.5 Flash) |
+| **AI** | OpenAI-compatible Global Engine |
 | **Maps** | OSMDroid (OpenStreetMap) |
 | **Database** | Room (Offline Support), Firebase Firestore (Live Reviews) |
 | **Analytics** | Firebase Analytics & Google Services |

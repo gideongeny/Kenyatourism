@@ -89,8 +89,8 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics")
 
-    // Google AI (Real Gemini Chatbot)
-    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
+    // Network for AI
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
