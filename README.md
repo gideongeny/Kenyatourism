@@ -52,10 +52,6 @@
 - **Coil**: Efficient image loading
 - **MVVM Architecture**: Clean, maintainable code structure
 
-## 📱 Screenshots
-
-*Coming soon - Experience the magic yourself!*
-
 ## 🛠️ Tech Stack
 
 | Technology | Purpose |
