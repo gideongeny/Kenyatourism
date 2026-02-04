@@ -1,48 +1,154 @@
 package com.kenyatourism.app.data
 
+import android.content.Context
+
 data class Destination(
     val id: Int,
     val name: String,
     val category: String,
     val description: String,
     val imageUrl: String,
+    val imageGallery: List<String> = emptyList(),
+    val videoUrl: String? = null,
     val rating: Float,
-    val region: String
+    val region: String,
+    val latitude: Double? = null,
+    val longitude: Double? = null,
+    val bestTimeToVisit: String? = null,
+    val activities: List<String> = emptyList()
 )
 
 object DestinationsRepository {
-    val destinations = listOf(
-        Destination(1, "Maasai Mara", "Safaris", "The world-famous wildlife sanctuary.", "https://images.unsplash.com/photo-1516422317184-268d71010ee2", 4.9f, "Rift Valley"),
-        Destination(2, "Amboseli National Park", "Safaris", "Elephants with Kilimanjaro backdrop.", "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e", 4.8f, "Rift Valley"),
-        Destination(3, "Diani Beach", "Beaches", "Crystal clear waters and white sands.", "https://images.unsplash.com/photo-1589982840479-08a546294747", 4.9f, "Coast"),
-        Destination(4, "Mount Kenya", "Adventure", "Climb the peak of Africa's 2nd highest mountain.", "https://images.unsplash.com/photo-1548574505-5e239809ee19", 4.7f, "Central"),
-        Destination(5, "Lake Nakuru", "Safaris", "Flamingo haven and rhino sanctuary.", "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5", 4.6f, "Rift Valley"),
-        Destination(6, "Tsavo East", "Safaris", "Theater of the wild - red elephants.", "https://images.unsplash.com/photo-1523805009345-7448845a9e53", 4.5f, "Coast"),
-        Destination(7, "Watamu", "Beaches", "Marine life and turtle watch.", "https://images.unsplash.com/photo-1533105079780-92b9be482077", 4.7f, "Coast"),
-        Destination(8, "Hell's Gate", "Adventure", "Gorges, wildlife, and cycling.", "https://images.unsplash.com/photo-1514539079130-25950c84af65", 4.6f, "Rift Valley"),
-        Destination(9, "Samburu", "Safaris", "The rugged beauty of Northern Kenya.", "https://images.unsplash.com/photo-1549366021-9f761d450615", 4.8f, "North"),
-        Destination(10, "Lamu Island", "Culture", "Swahili heritage and dhow sailing.", "https://images.unsplash.com/photo-1506461883276-594a12b11cf3", 4.9f, "Coast"),
-        Destination(11, "Aberdare National Park", "Safaris", "Waterfalls and moorlands.", "https://images.unsplash.com/photo-1516422317184-268d71010ee2", 4.6f, "Central"),
-        Destination(12, "Ol Pejeta Conservancy", "Safaris", "Home to the last Northern White Rhinos.", "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5", 4.9f, "Central"),
-        Destination(13, "Lake Turkana", "Adventure", "The Jade Sea - The largest desert lake.", "https://images.unsplash.com/photo-1514539079130-25950c84af65", 4.7f, "North"),
-        Destination(14, "Nairobi National Park", "Safaris", "Wildlife with a city backdrop.", "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e", 4.5f, "Nairobi"),
-        Destination(15, "Shimba Hills", "Beaches", "The coastal rainforest and Sable antelopes.", "https://images.unsplash.com/photo-1523805009345-7448845a9e53", 4.3f, "Coast"),
-        Destination(16, "Nanyuki", "Stays", "Gateway to Mt. Kenya and luxury ranches.", "https://images.unsplash.com/photo-1548574505-5e239809ee19", 4.4f, "Central"),
-        Destination(17, "Kisite-Mpunguti", "Beaches", "Dolphin spotting and snorkeling.", "https://images.unsplash.com/photo-1589982840479-08a546294747", 4.8f, "Coast"),
-        Destination(18, "Meru National Park", "Safaris", "Elsa's Kopje and wild landscapes.", "https://images.unsplash.com/photo-1516422317184-268d71010ee2", 4.7f, "Eastern"),
-        Destination(19, "Lake Naivasha", "Lakes", "Bird watching and hippo spotting.", "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5", 4.6f, "Rift Valley"),
-        Destination(20, "Mount Longonot", "Adventure", "Hiking the crater floor.", "https://images.unsplash.com/photo-1514539079130-25950c84af65", 4.6f, "Rift Valley"),
-        Destination(21, "Malindi", "Beaches", "The Italian town in Kenya.", "https://images.unsplash.com/photo-1533105079780-92b9be482077", 4.5f, "Coast"),
-        Destination(22, "Chyulu Hills", "Adventure", "The Green Hills of Africa.", "https://images.unsplash.com/photo-1549366021-9f761d450615", 4.7f, "Eastern"),
-        Destination(23, "Karura Forest", "Nature", "Green lung of Nairobi.", "https://images.unsplash.com/photo-1506461883276-594a12b11cf3", 4.8f, "Nairobi"),
-        Destination(24, "David Sheldrick Wildlife Trust", "Wildlife", "Orphaned baby elephants.", "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e", 4.9f, "Nairobi"),
-        Destination(25, "Giraffe Centre", "Wildlife", "Hand-feed Rothschild giraffes.", "https://images.unsplash.com/photo-1516422317184-268d71010ee2", 4.8f, "Nairobi"),
-        // ... Continuing to 100
-        Destination(100, "Voi", "Culture", "The gateway to Tsavo West.", "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5", 4.2f, "Coast")
+    // Helper to resolve local drawable resource
+    fun getDestinationDrawable(context: Context, name: String): Int {
+        try {
+            val normalized = name.lowercase()
+                .replace(Regex("[^a-z0-9.]"), "_")
+                .replace(Regex("_+"), "_")
+                .trim('_')
+            return context.resources.getIdentifier(normalized, "drawable", context.packageName)
+        } catch (e: Exception) {
+            return 0
+        }
+    }
+
+    val allDestinations = listOf(
+        Destination(1, "Maasai Mara National Reserve", "Wildlife Safari", "The world-famous wildlife sanctuary, home to the Great Migration and Big Five.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), "https://www.youtube.com/watch?v=dQw4w9WgXcQ", 4.9f, "Rift Valley", -1.5, 35.1, "July-October", listOf("Game Drives", "Balloon Safari")),
+        Destination(2, "Amboseli National Park", "Wildlife Safari", "Famous for its elephant herds and stunning views of Mount Kilimanjaro.", "https://images.unsplash.com/photo-1549366021-9f761d450615", emptyList(), null, 4.8f, "Rift Valley", -2.6, 37.3, "June-October", listOf("Elephant Watching", "Photography")),
+        Destination(3, "Tsavo East National Park", "Wildlife Safari", "One of the world's largest game reserves, famous for red elephants.", "https://images.unsplash.com/photo-1547970810-dc1eac37d174", emptyList(), null, 4.7f, "Coast", -3.2, 38.5, "June-October", listOf("Game Drives", "Camping")),
+        Destination(4, "Tsavo West National Park", "Wildlife Safari", "Dramatic volcanic landscapes and Mzima Springs.", "https://images.unsplash.com/photo-1535338454770-7a7d17c0d9f2", emptyList(), null, 4.7f, "Coast", -3.0, 38.0, "June-October", listOf("Mzima Springs", "Cave Exploration")),
+        Destination(5, "Lake Nakuru National Park", "Wildlife Safari", "Famous for flamingos, rhinos, and tree-climbing lions.", "https://images.unsplash.com/photo-1564760055775-d63b17a55c44", emptyList(), null, 4.8f, "Rift Valley", -0.3, 36.1, "Year-round", listOf("Bird Watching", "Safari")),
+        Destination(6, "Samburu National Reserve", "Wildlife Safari", "Unique wildlife including Grevy's zebra and reticulated giraffe.", "https://images.unsplash.com/photo-1549366021-9f761d450615", emptyList(), null, 4.7f, "Eastern", 0.5, 37.5, "June-October", listOf("Game Drives", "Cultural Visits")),
+        Destination(7, "Nairobi National Park", "Wildlife Safari", "The only national park within a capital city.", "https://images.unsplash.com/photo-1547970810-dc1eac37d174", emptyList(), null, 4.6f, "Nairobi", -1.4, 36.9, "Year-round", listOf("Game Drives", "Picnicking")),
+        Destination(8, "Hell's Gate National Park", "Adventure", "Dramatic scenery with cliffs, gorges, and geothermal activity.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), null, 4.5f, "Rift Valley", -0.9, 36.3, "Year-round", listOf("Cycling", "Hiking", "Climbing")),
+        Destination(9, "Aberdare National Park", "Wildlife Safari", "Misty moorlands, bamboo forests, and waterfalls.", "https://images.unsplash.com/photo-1535338454770-7a7d17c0d9f2", emptyList(), null, 4.6f, "Central", -0.4, 36.7, "Year-round", listOf("Trout Fishing", "Hiking")),
+        Destination(10, "Meru National Park", "Wildlife Safari", "Pristine wilderness where Elsa the lioness was raised.", "https://images.unsplash.com/photo-1564760055775-d63b17a55c44", emptyList(), null, 4.5f, "Eastern", 0.1, 38.2, "June-October", listOf("Game Drives", "Wilderness")),
+        Destination(11, "Diani Beach", "Beach", "Pristine white sand beach with crystal-clear waters.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.8f, "Coast", -4.3, 39.6, "Year-round", listOf("Water Sports", "Relaxation")),
+        Destination(12, "Watamu Beach", "Beach", "Marine park with sea turtles and coral reefs.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.7f, "Coast", -3.4, 40.0, "Year-round", listOf("Snorkeling", "Diving")),
+        Destination(13, "Malindi Beach", "Beach", "Historic coastal town with beautiful beaches.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.6f, "Coast", -3.2, 40.1, "Year-round", listOf("History", "Beach")),
+        Destination(14, "Lamu Island", "Culture", "UNESCO World Heritage Site with ancient Swahili architecture.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.9f, "Coast", -2.3, 40.9, "Year-round", listOf("History", "Culture")),
+        Destination(15, "Mount Kenya", "Mountain", "Africa's second-highest peak.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.9f, "Central", -0.2, 37.3, "Jan-Feb", listOf("Climbing", "Hiking")),
+        Destination(16, "Mount Longonot", "Hiking", "Dormant volcano with a stunning crater.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.7f, "Rift Valley", -0.9, 36.4, "Year-round", listOf("Hiking", "Views")),
+        Destination(17, "Lake Naivasha", "Lake", "Freshwater lake with hippos and birdlife.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.7f, "Rift Valley", -0.8, 36.4, "Year-round", listOf("Boat Rides", "Birding")),
+        Destination(18, "Fort Jesus, Mombasa", "History", "16th-century Portuguese fort.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.7f, "Coast", -4.1, 39.7, "Year-round", listOf("History", "Museum")),
+        Destination(19, "Giraffe Centre", "Wildlife", "Conservation centre for Rothschild's giraffes.", "https://images.unsplash.com/photo-1547970810-dc1eac37d174", emptyList(), null, 4.8f, "Nairobi", -1.4, 36.7, "Year-round", listOf("Feeding Giraffes", "Education")),
+        Destination(20, "David Sheldrick Elephant Orphanage", "Wildlife", "Rescue and rehabilitation program for elephants.", "https://images.unsplash.com/photo-1549366021-9f761d450615", emptyList(), null, 4.9f, "Nairobi", -1.4, 36.7, "Year-round", listOf("Adoption", "Visiting")),
+        Destination(21, "Aberdare Ranges", "Mountain", "Scenic mountain range.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Central", -0.5, 36.6, "Year-round", listOf("Hiking", "Views")),
+        Destination(22, "Arabuko Sokoke Forest", "Nature", "Largest remaining coastal forest.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), null, 4.4f, "Coast", -3.3, 39.9, "Year-round", listOf("Birding", "Walking")),
+        Destination(23, "Bamburi Beach", "Beach", "Popular beach destination.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.5f, "Coast", -3.9, 39.7, "Year-round", listOf("Beach", "Fun")),
+        Destination(24, "Bomas of Kenya", "Culture", "Cultural center showcasing traditional homesteads.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.6f, "Nairobi", -1.3, 36.7, "Year-round", listOf("Culture", "Dance")),
+        Destination(25, "Carnivore Restaurant", "Dining", "Famous for its meat buffet.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.7f, "Nairobi", -1.3, 36.8, "Year-round", listOf("Dining", "Experience")),
+        Destination(26, "Central Island National Park", "Nature", "Volcanic island in Lake Turkana.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Turkana", 3.5, 36.0, "Year-round", listOf("Adventure", "Views")),
+        Destination(27, "Chale Island", "Beach", "Private island paradise.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.8f, "Coast", -4.4, 39.5, "Year-round", listOf("Luxury", "Beach")),
+        Destination(28, "Cherangani Hills", "Hiking", "Scenic hills for trekking.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Rift Valley", 1.0, 35.5, "Year-round", listOf("Hiking", "Views")),
+        Destination(29, "Chyulu Hills", "Nature", "Rolling volcanic hills.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Eastern", -2.6, 37.7, "Year-round", listOf("Scenery", "Nature")),
+        Destination(30, "Chyulu Hills National Park", "Nature", "Protected volcanic landscape.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Eastern", -2.5, 37.8, "Year-round", listOf("Wildlife", "Caves")),
+        Destination(31, "Eldoret City", "Urban", "Home of champions.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.4f, "Rift Valley", 0.5, 35.3, "Year-round", listOf("City", "Culture")),
+        Destination(32, "Fourteen Falls", "Nature", "Spectacular waterfalls.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), null, 4.3f, "Central", -1.1, 37.2, "Year-round", listOf("Views", "Nature")),
+        Destination(33, "Funzi Island", "Beach", "Mangroves and seclusion.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.6f, "Coast", -4.5, 39.4, "Year-round", listOf("Boat Trips", "Beach")),
+        Destination(34, "Galu Beach", "Beach", "Beautiful sandy beach.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.7f, "Coast", -4.4, 39.6, "Year-round", listOf("Relaxation", "Sun")),
+        Destination(35, "Gedi Ruins", "History", "Ancient Swahili city ruins.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.7f, "Coast", -3.3, 40.0, "Year-round", listOf("History", "Exploration")),
+        Destination(36, "Haller Park", "Nature", "Reclaimed quarry nature park.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), null, 4.6f, "Coast", -4.0, 39.7, "Year-round", listOf("Wildlife", "Walking")),
+        Destination(37, "Hyrax Hill", "History", "Prehistoric site.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.4f, "Rift Valley", -0.3, 36.1, "Year-round", listOf("History", "Museum")),
+        Destination(38, "Jumba la Mtwana", "History", "Ancient ruins.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.5f, "Coast", -3.9, 39.7, "Year-round", listOf("History", "Culture")),
+        Destination(39, "Kakamega Forest", "Nature", "Tropical rainforest.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), null, 4.6f, "Western", 0.3, 34.8, "Year-round", listOf("Birding", "Hiking")),
+        Destination(40, "Karen Blixen Museum", "History", "Author's home.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.7f, "Nairobi", -1.3, 36.7, "Year-round", listOf("History", "Literature")),
+        Destination(41, "Kariandusi Museum", "History", "Early stone age site.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.4f, "Rift Valley", -0.4, 36.2, "Year-round", listOf("History", "Archaeology")),
+        Destination(42, "Karura Forest", "Nature", "Urban forest with trails.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), null, 4.8f, "Nairobi", -1.2, 36.8, "Year-round", listOf("Cycling", "Running")),
+        Destination(43, "Kaya Forests", "Culture", "Sacred Mijikenda forests.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), null, 4.5f, "Coast", -4.2, 39.6, "Year-round", listOf("Culture", "Nature")),
+        Destination(44, "Kazuri Beads Factory", "Culture", "Handmade ceramic beads.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.7f, "Nairobi", -1.3, 36.7, "Year-round", listOf("Shopping", "Art")),
+        Destination(45, "Kericho Town", "Urban", "Tea capital.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Rift Valley", -0.3, 35.3, "Year-round", listOf("Tea Tours", "Greenery")),
+        Destination(46, "Kikambala Beach", "Beach", "North coast beach.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.5f, "Coast", -3.8, 39.8, "Year-round", listOf("Beach", "Relax")),
+        Destination(47, "Kilifi Beach", "Beach", "Scenic beach and creek.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.6f, "Coast", -3.6, 39.8, "Year-round", listOf("Beach", "Water")),
+        Destination(48, "Kinangop Plateau", "Nature", "High altitude plateau.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.4f, "Central", -0.6, 36.6, "Year-round", listOf("Views", "Birding")),
+        Destination(49, "Kisite-Mpunguti Marine Park", "Nature", "Marine life sanctuary.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.8f, "Coast", -4.7, 39.3, "Year-round", listOf("Dolphins", "Snorkeling")),
+        Destination(50, "Kisumu City", "Urban", "Lakeside city.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Western", -0.1, 34.7, "Year-round", listOf("City", "Lake")),
+        Destination(51, "Kitengela Glass", "Art", "Glass blowing artistry.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.7f, "Nairobi", -1.4, 36.8, "Year-round", listOf("Art", "Crafts")),
+        Destination(52, "Koobi Fora", "History", "Cradle of mankind.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Turkana", 3.9, 36.2, "Year-round", listOf("History", "Fossils")),
+        Destination(53, "Lake Baringo", "Lake", "Bird paradise.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Rift Valley", 0.6, 36.0, "Year-round", listOf("Birding", "Boating")),
+        Destination(54, "Lake Bogoria", "Lake", "Hot springs and geysers.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Rift Valley", 0.2, 36.1, "Year-round", listOf("Nature", "Hot Springs")),
+        Destination(55, "Lake Bogoria National Reserve", "Nature", "Protected lake reserve.", "https://images.unsplash.com/photo-1564760055775-d63b17a55c44", emptyList(), null, 4.6f, "Rift Valley", 0.2, 36.1, "Year-round", listOf("Wildlife", "Scenery")),
+        Destination(56, "Lake Chala", "Lake", "Crater lake.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Coast", -3.3, 37.7, "Year-round", listOf("Views", "Nature")),
+        Destination(57, "Lake Elementaita", "Lake", "Soda lake with pelicans.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Rift Valley", -0.4, 36.2, "Year-round", listOf("Birding", "Scenic")),
+        Destination(58, "Lake Jipe", "Lake", "Remote lake.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.4f, "Coast", -3.6, 37.7, "Year-round", listOf("Fishing", "Nature")),
+        Destination(59, "Lake Kamnarok", "Lake", "Diverse ecosystem.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.3f, "Rift Valley", 0.7, 35.6, "Year-round", listOf("Wildlife", "Nature")),
+        Destination(60, "Lake Magadi", "Lake", "Pink soda lake.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Rift Valley", -1.9, 36.3, "Year-round", listOf("Photography", "Nature")),
+        Destination(61, "Lake Ol Bolossat", "Lake", "Important wetland.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.4f, "Central", -0.1, 36.4, "Year-round", listOf("Birding", "Hipoos")),
+        Destination(62, "Lake Paradise", "Nature", "Crater lake in Marsabit.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.7f, "Eastern", 2.3, 37.9, "Year-round", listOf("Scenery", "Nature")),
+        Destination(63, "Lake Simbi Nyaima", "Lake", "Crater lake.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.4f, "Western", -0.4, 34.6, "Year-round", listOf("Nature", "Legends")),
+        Destination(64, "Lake Turkana", "Lake", "Jade sea.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.7f, "Turkana", 3.0, 36.0, "Year-round", listOf("Adventure", "Culture")),
+        Destination(65, "Lake Victoria", "Lake", "Major inland sea.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Western", -0.5, 34.0, "Year-round", listOf("Fishing", "Islands")),
+        Destination(66, "Lamu Old Town", "History", "Swahili heritage.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.8f, "Coast", -2.3, 40.9, "Year-round", listOf("History", "Architecture")),
+        Destination(67, "Loita Hills", "Hiking", "Walking safaris.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Rift Valley", -1.6, 35.5, "Year-round", listOf("Trekking", "Culture")),
+        Destination(68, "Maasai Market", "Shopping", "Curios and crafts.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.7f, "Nairobi", -1.3, 36.8, "Year-round", listOf("Shopping", "Art")),
+        Destination(69, "Maasai Village", "Culture", "Traditional life.", "https://images.unsplash.com/photo-1549366021-9f761d450615", emptyList(), null, 4.8f, "Various", -1.5, 35.0, "Year-round", listOf("Culture", "Tradition")),
+        Destination(70, "Malindi Town", "Urban", "Coastal charm.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.5f, "Coast", -3.2, 40.1, "Year-round", listOf("Town", "Beach")),
+        Destination(71, "Malka Mari National Park", "Nature", "Border wilderness.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.3f, "Eastern", 3.9, 40.7, "Year-round", listOf("Remote", "Nature")),
+        Destination(72, "Mamba Village", "Wildlife", "Crocodile farm.", "https://images.unsplash.com/photo-1549366021-9f761d450615", emptyList(), null, 4.4f, "Coast", -4.0, 39.7, "Year-round", listOf("Reptiles", "Tour")),
+        Destination(73, "Manda Island", "Beach", "Quiet island.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.6f, "Coast", -2.3, 40.9, "Year-round", listOf("Beach", "Ruins")),
+        Destination(74, "Marsabit National Park", "Nature", "Forest mountain.", "https://images.unsplash.com/photo-1564760055775-d63b17a55c44", emptyList(), null, 4.5f, "Eastern", 2.3, 37.9, "Year-round", listOf("Wildlife", "Scenic")),
+        Destination(75, "Mau Forest", "Nature", "Water tower.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), null, 4.5f, "Rift Valley", -0.5, 35.7, "Year-round", listOf("Forest", "Nature")),
+        Destination(76, "Menengai Crater", "Nature", "Large caldera.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Rift Valley", -0.2, 36.1, "Year-round", listOf("Hiking", "Views")),
+        Destination(77, "Mnarani Ruins", "History", "Ancient mosques.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.5f, "Coast", -3.6, 39.8, "Year-round", listOf("History", "Culture")),
+        Destination(78, "Mombasa Old Town", "Urban", "Historic city.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.7f, "Coast", -4.1, 39.7, "Year-round", listOf("Walking", "History")),
+        Destination(79, "Mount Elgon", "Mountain", "Volcanic giant.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Western", 1.1, 34.5, "Year-round", listOf("Climbing", "Caves")),
+        Destination(80, "Mount Elgon National Park", "Nature", "Elephants in caves.", "https://images.unsplash.com/photo-1549366021-9f761d450615", emptyList(), null, 4.6f, "Western", 1.1, 34.5, "Year-round", listOf("Nature", "Wildlife")),
+        Destination(81, "Mount Suswa", "Mountain", "Craters and caves.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Rift Valley", -1.1, 36.3, "Year-round", listOf("Hiking", "Caving")),
+        Destination(82, "Msambweni Beach", "Beach", "Secluded beach.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.7f, "Coast", -4.5, 39.5, "Year-round", listOf("Relaxation", "Beach")),
+        Destination(83, "Mtwapa Beach", "Beach", "Creek life.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.5f, "Coast", -3.9, 39.7, "Year-round", listOf("Boating", "Fun")),
+        Destination(84, "Mwea National Reserve", "Nature", "Savannah ecosystem.", "https://images.unsplash.com/photo-1564760055775-d63b17a55c44", emptyList(), null, 4.4f, "Central", -0.8, 37.6, "Year-round", listOf("Wildlife", "Nature")),
+        Destination(85, "Mzima Springs", "Nature", "Clear water springs.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.7f, "Coast", -3.0, 38.0, "Year-round", listOf("Nature", "Viewing")),
+        Destination(86, "Nairobi City", "Urban", "Green city in the sun.", "https://images.unsplash.com/photo-1547970810-dc1eac37d174", emptyList(), null, 4.6f, "Nairobi", -1.3, 36.8, "Year-round", listOf("City", "Business")),
+        Destination(87, "Nairobi National Museum", "Culture", "History and art.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.7f, "Nairobi", -1.3, 36.8, "Year-round", listOf("Museum", "Education")),
+        Destination(88, "Nairobi Safari Walk", "Wildlife", "Wildlife boardwalk.", "https://images.unsplash.com/photo-1549366021-9f761d450615", emptyList(), null, 4.6f, "Nairobi", -1.4, 36.7, "Year-round", listOf("Walking", "Animals")),
+        Destination(89, "Naivasha Town", "Urban", "Lake town.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Rift Valley", -0.7, 36.4, "Year-round", listOf("Town", "Lake")),
+        Destination(90, "Nakuru City", "Urban", "Flamingo city.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Rift Valley", -0.3, 36.1, "Year-round", listOf("City", "Park")),
+        Destination(91, "Nanyuki Town", "Urban", "Equator town.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Central", -0.0, 37.1, "Year-round", listOf("Town", "Mountain")),
+        Destination(92, "Ngong Hills", "Hiking", "Scenic hills.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.7f, "Nairobi", -1.4, 36.6, "Year-round", listOf("Hiking", "Views")),
+        Destination(93, "Nyali Beach", "Beach", "Popular resort area.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.6f, "Coast", -4.0, 39.7, "Year-round", listOf("Beach", "Hotels")),
+        Destination(94, "Nyeri Town", "Urban", "Central highlands.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Central", -0.4, 36.9, "Year-round", listOf("Town", "Coffee")),
+        Destination(95, "Ol Donyo Sabuk", "Mountain", "Buffalo mountain.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.4f, "Central", -1.1, 37.3, "Year-round", listOf("Hiking", "Views")),
+        Destination(96, "Ol Pejeta Conservancy", "Wildlife", "Rhino sanctuary.", "https://images.unsplash.com/photo-1564760055775-d63b17a55c44", emptyList(), null, 4.8f, "Laikipia", 0.0, 36.9, "Year-round", listOf("Wildlife", "Conservation")),
+        Destination(97, "Olorgesailie", "History", "Prehistoric site.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Rift Valley", -1.6, 36.4, "Year-round", listOf("History", "Tools")),
+        Destination(98, "Pate Island", "History", "Historic settlements.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.5f, "Coast", -2.1, 41.0, "Year-round", listOf("History", "Culture")),
+        Destination(99, "Ruma National Park", "Wildlife", "Roan antelope.", "https://images.unsplash.com/photo-1564760055775-d63b17a55c44", emptyList(), null, 4.4f, "Western", -0.6, 34.3, "Year-round", listOf("Wildlife", "Nature")),
+        Destination(100, "Saiwa Swamp National Park", "Nature", "Sitatunga antelope.", "https://images.unsplash.com/photo-1564760055775-d63b17a55c44", emptyList(), null, 4.5f, "Western", 1.1, 35.1, "Year-round", listOf("Walking", "Nature")),
+        Destination(101, "Samburu Village", "Culture", "Tribal culture.", "https://images.unsplash.com/photo-1549366021-9f761d450615", emptyList(), null, 4.7f, "Samburu", 0.6, 37.6, "Year-round", listOf("Culture", "Tradition")),
+        Destination(102, "Shanzu Beach", "Beach", "Serene beach.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.5f, "Coast", -3.9, 39.7, "Year-round", listOf("Beach", "Relax")),
+        Destination(103, "Shela Beach", "Beach", "Lamu dunes.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.8f, "Coast", -2.3, 40.9, "Year-round", listOf("Beach", "Dunes")),
+        Destination(104, "Shimba Hills National Reserve", "Nature", "Coastal hills.", "https://images.unsplash.com/photo-1516426122078-c23e76319801", emptyList(), null, 4.6f, "Coast", -4.2, 39.4, "Year-round", listOf("Wildlife", "Views")),
+        Destination(105, "Siyu Fort", "History", "Historic fort.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.5f, "Coast", -2.1, 41.0, "Year-round", listOf("History", "Architecture")),
+        Destination(106, "South Island National Park", "Nature", "Island wildlife.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.5f, "Turkana", 2.6, 36.6, "Year-round", listOf("Adventure", "Nature")),
+        Destination(107, "Taita Hills", "Nature", "Cloud forest.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.6f, "Coast", -3.4, 38.3, "Year-round", listOf("Nature", "Birds")),
+        Destination(108, "Takaungu Beach", "Beach", "Quiet village beach.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.5f, "Coast", -3.7, 39.8, "Year-round", listOf("Beach", "Culture")),
+        Destination(109, "Takwa Ruins", "History", "Manda Island ruins.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.6f, "Coast", -2.3, 40.9, "Year-round", listOf("History", "Ruins")),
+        Destination(110, "Thika Town", "Urban", "Industrial hub.", "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", emptyList(), null, 4.4f, "Central", -1.0, 37.1, "Year-round", listOf("Town", "Falls")),
+        Destination(111, "Thimlich Ohinga", "History", "Stone structures.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.7f, "Western", -0.9, 34.3, "Year-round", listOf("History", "Archaeology")),
+        Destination(112, "Tiwi Beach", "Beach", "Secluded beach.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.6f, "Coast", -4.2, 39.6, "Year-round", listOf("Beach", "Coral")),
+        Destination(113, "Vasco da Gama Pillar", "History", "Monument.", "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a", emptyList(), null, 4.5f, "Coast", -3.2, 40.1, "Year-round", listOf("History", "Views")),
+        Destination(114, "Vipingo Beach", "Beach", "Scenic coast.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.6f, "Coast", -3.8, 39.8, "Year-round", listOf("Beach", "Golf")),
+        Destination(115, "Wasini Island", "Beach", "Coral gardens.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.7f, "Coast", -4.7, 39.4, "Year-round", listOf("Snorkeling", "Dolphins"))
     )
     
-    val allDestinations = (1..100).map { i ->
-        val template = destinations[(i - 1) % destinations.size]
-        template.copy(id = i, name = "${template.name} View $i")
-    }
+    val destinations = allDestinations
 }
