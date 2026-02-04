@@ -21,34 +21,12 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.draw.blur
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.stringResource
-
-@Composable
-fun GlassBox(
-    modifier: Modifier = Modifier,
-    content: @Composable BoxScope.() -> Unit
-) {
-    Box(
-        modifier = modifier
-            .clip(RoundedCornerShape(24.dp))
-            .background(Color.White.copy(alpha = 0.1f))
-            .blur(20.dp) // Optional blur if supported (needs S+)
-            .background(
-                Brush.verticalGradient(
-                    listOf(
-                        Color.White.copy(alpha = 0.2f),
-                        Color.White.copy(alpha = 0.05f)
-                    )
-                )
-            )
-    ) {
-        content()
-    }
-}
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.draw.clip
 import coil.compose.AsyncImage
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -59,6 +37,40 @@ import com.gideongeng.kenyatourism.data.DestinationsRepository
 import com.gideongeng.kenyatourism.data.FavoritesManager
 import com.gideongeng.kenyatourism.ui.theme.MaasaiRed
 import com.gideongeng.kenyatourism.ui.theme.SavannahGold
+
+@Composable
+fun GlassBox(
+    modifier: Modifier = Modifier,
+    content: @Composable BoxScope.() -> Unit
+) {
+    Box(
+        modifier = modifier
+            .clip(RoundedCornerShape(24.dp))
+    ) {
+        // Layered background for glass effect without blurring content
+        Box(
+            modifier = Modifier
+                .matchParentSize()
+                .background(Color.White.copy(alpha = 0.15f))
+                .blur(10.dp)
+        )
+        Box(
+            modifier = Modifier
+                .matchParentSize()
+                .background(
+                    Brush.verticalGradient(
+                        listOf(
+                            Color.White.copy(alpha = 0.2f),
+                            Color.White.copy(alpha = 0.05f)
+                        )
+                    )
+                )
+        )
+        Box(modifier = Modifier.padding(2.dp)) {
+            content()
+        }
+    }
+}
 
 @Composable
 fun BuyMeCoffeeButton(onClick: () -> Unit) {

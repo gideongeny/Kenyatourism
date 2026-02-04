@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
     id("com.google.gms.google-services")
 }
 
@@ -40,11 +40,14 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    kotlin {
+        jvmToolchain(17)
+    }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.14"
     }
     packaging {
         resources {
@@ -82,8 +85,8 @@ dependencies {
     ksp("androidx.room:room-compiler:$roomVersion")
 
     // Firebase (Global Public Reviews)
-    implementation(platform("com.google.firebase:firebase-bom:34.8.0"))
-    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics")
 
     // Google AI (Real Gemini Chatbot)

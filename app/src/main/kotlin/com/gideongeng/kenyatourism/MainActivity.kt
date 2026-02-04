@@ -87,9 +87,11 @@ fun MainApp(viewModel: DestinationViewModel, favoritesManager: FavoritesManager)
             }
         },
         floatingActionButton = {
-            BuyMeCoffeeButton {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://buymeacoffee.com/Gideongeny"))
-                context.startActivity(intent)
+            if (selectedTab != 2) {
+                BuyMeCoffeeButton {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://buymeacoffee.com/Gideongeny"))
+                    context.startActivity(intent)
+                }
             }
         }
     ) { padding ->

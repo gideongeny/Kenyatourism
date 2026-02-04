@@ -41,6 +41,6 @@ class FavoritesManager(context: Context) {
 
     fun getFavoriteDestinations(): List<Destination> {
         val favoriteIds = _favorites.value
-        return DestinationsRepository.allDestinations.filter { it.id in favoriteIds }
+        return DestinationsRepository.allDestinations.value.filter { it.id in favoriteIds }
     }
 }
