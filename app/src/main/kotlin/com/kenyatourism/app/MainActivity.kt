@@ -12,6 +12,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -172,20 +176,22 @@ fun MainDashboard(favoritesManager: FavoritesManager, onDestinationClick: (Desti
         }
     }
 
-    LazyColumn(
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(minSize = 350.dp),
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(bottom = 100.dp)
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(bottom = 100.dp, top = 0.dp, start = 16.dp, end = 16.dp)
     ) {
-        item {
+        item(span = { GridItemSpan(maxLineSpan) }) {
             DashboardHeader()
         }
         
         // Search & Categories Section
-        item {
-            Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)) {
+        item(span = { GridItemSpan(maxLineSpan) }) {
+            Column(modifier = Modifier.padding(vertical = 8.dp)) {
                 // Search Bar
                 OutlinedTextField(
                     value = searchQuery,
@@ -227,21 +233,19 @@ fun MainDashboard(favoritesManager: FavoritesManager, onDestinationClick: (Desti
             }
         }
 
-        item {
+        item(span = { GridItemSpan(maxLineSpan) }) {
             Text(
                 text = "Featured Destinations",
                 style = MaterialTheme.typography.headlineMedium,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(vertical = 16.dp)
             )
         }
 
         items(filteredDestinations) { destination ->
-            Box(modifier = Modifier.padding(horizontal = 16.dp)) {
-                DestinationCard(destination, favoritesManager, onClick = { 
-                    onDestinationClick(destination)
-                    AdsManager.showInterstitial(context as ComponentActivity)
-                })
-            }
+            DestinationCard(destination, favoritesManager, onClick = { 
+                onDestinationClick(destination)
+                AdsManager.showInterstitial(context as ComponentActivity)
+            })
         }
     }
 }
@@ -451,7 +455,12 @@ fun DestinationDetailScreen(
                 }
 
                 // Content Body
-                Column(modifier = Modifier.padding(20.dp)) {
+                Column(
+                    modifier = Modifier
+                        .padding(20.dp)
+                        .widthIn(max = 800.dp)
+                        .align(Alignment.CenterHorizontally)
+                ) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
