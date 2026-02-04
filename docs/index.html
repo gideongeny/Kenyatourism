@@ -198,22 +198,49 @@
     <section id="gallery" class="py-24 relative overflow-hidden">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-16">App Preview</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass-card p-2 hover:scale-105 transition-transform duration-500" data-tilt>
-                    <img src="assets/home.png" class="rounded-2xl w-full h-[400px] object-cover" alt="Home">
-                    <p class="text-center py-4 font-bold text-gray-400">Interactive Dashboard</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 justify-items-center">
+                <!-- Phone 1: Home -->
+                <div class="flex flex-col items-center gap-6">
+                    <div class="relative w-[240px] h-[480px] phone-mockup" data-tilt>
+                        <div
+                            class="absolute inset-0 bg-black rounded-[35px] border-[6px] border-gray-800 shadow-2xl overflow-hidden">
+                            <img src="assets/home.png" class="w-full h-full object-cover" alt="Home">
+                        </div>
+                    </div>
+                    <p class="font-bold text-gray-400">Interactive Dashboard</p>
                 </div>
-                <div class="glass-card p-2 hover:scale-105 transition-transform duration-500" data-tilt>
-                    <img src="assets/map.png" class="rounded-2xl w-full h-[400px] object-cover" alt="Map">
-                    <p class="text-center py-4 font-bold text-gray-400">Free Open Maps</p>
+
+                <!-- Phone 2: Map -->
+                <div class="flex flex-col items-center gap-6">
+                    <div class="relative w-[240px] h-[480px] phone-mockup" data-tilt>
+                        <div
+                            class="absolute inset-0 bg-black rounded-[35px] border-[6px] border-gray-800 shadow-2xl overflow-hidden">
+                            <img src="assets/map.png" class="w-full h-full object-cover" alt="Map">
+                        </div>
+                    </div>
+                    <p class="font-bold text-gray-400">Free Open Maps</p>
                 </div>
-                <div class="glass-card p-2 hover:scale-105 transition-transform duration-500 shadow-2xl" data-tilt>
-                    <img src="assets/ai.png" class="rounded-2xl w-full h-[400px] object-cover" alt="AI Guide">
-                    <p class="text-center py-4 font-bold text-white">Safari AI Expert</p>
+
+                <!-- Phone 3: AI -->
+                <div class="flex flex-col items-center gap-6">
+                    <div class="relative w-[240px] h-[480px] phone-mockup" data-tilt>
+                        <div
+                            class="absolute inset-0 bg-black rounded-[35px] border-[6px] border-gray-800 shadow-2xl overflow-hidden">
+                            <img src="assets/ai.png" class="w-full h-full object-cover" alt="AI Guide">
+                        </div>
+                    </div>
+                    <p class="font-bold text-white">Safari AI Expert</p>
                 </div>
-                <div class="glass-card p-2 hover:scale-105 transition-transform duration-500" data-tilt>
-                    <img src="assets/wishlist.png" class="rounded-2xl w-full h-[400px] object-cover" alt="Wishlist">
-                    <p class="text-center py-4 font-bold text-gray-400">Personal Wishlist</p>
+
+                <!-- Phone 4: Wishlist -->
+                <div class="flex flex-col items-center gap-6">
+                    <div class="relative w-[240px] h-[480px] phone-mockup" data-tilt>
+                        <div
+                            class="absolute inset-0 bg-black rounded-[35px] border-[6px] border-gray-800 shadow-2xl overflow-hidden">
+                            <img src="assets/wishlist.png" class="w-full h-full object-cover" alt="Wishlist">
+                        </div>
+                    </div>
+                    <p class="font-bold text-gray-400">Personal Wishlist</p>
                 </div>
             </div>
         </div>
