@@ -1,14 +1,16 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp") version "1.9.22-1.0.17"
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.kenyatourism.app"
+    namespace = "com.gideongeng.kenyatourism"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.kenyatourism.app"
+        applicationId = "com.gideongeng.kenyatourism"
         minSdk = 24
         targetSdk = 34
         versionCode = 2
@@ -42,7 +44,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
     packaging {
         resources {
@@ -69,6 +71,23 @@ dependencies {
 
     // Lottie for animations
     implementation("com.airbnb.android:lottie-compose:6.3.0")
+
+    // OpenStreetMap (Free Alternative)
+    implementation("org.osmdroid:osmdroid-android:6.1.18")
+
+    // Room Database
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
+
+    // Firebase (Global Public Reviews)
+    implementation(platform("com.google.firebase:firebase-bom:34.8.0"))
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-analytics")
+
+    // Google AI (Real Gemini Chatbot)
+    implementation("com.google.ai.client.generativeai:generativeai:0.2.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

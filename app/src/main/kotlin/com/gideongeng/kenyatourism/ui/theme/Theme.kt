@@ -1,4 +1,4 @@
-package com.kenyatourism.app.ui.theme
+package com.gideongeng.kenyatourism.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme

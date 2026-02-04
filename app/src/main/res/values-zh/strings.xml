@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">探访肯尼亚</string>
+    <string name="dashboard_title">探访肯尼亚</string>
+    <string name="dashboard_subtitle">探索肯尼亚隐藏的宝藏</string>
+    <string name="search_placeholder">寻找迪亚尼，马赛马拉...</string>
+    <string name="featured_destinations">热门目的地</string>
+    <string name="wishlist_title">我的收藏</string>
+    <string name="no_favorites">暂无收藏</string>
+    <string name="explore_map">浏览地图</string>
+    <string name="support_us">支持我们</string>
+    <string name="watch_video">观看视频</string>
+    <string name="view_map">查看地图</string>
+    <string name="ai_guide">游猎人工智能指南</string>
+    <string name="chat_placeholder">向我咨询关于肯尼亚的问题...</string>
+</resources>

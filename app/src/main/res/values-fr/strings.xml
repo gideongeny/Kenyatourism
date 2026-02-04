@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Tembea Kenya</string>
+    <string name="dashboard_title">TEMBEA KENYA</string>
+    <string name="dashboard_subtitle">Découvrez les Trésors Cachés du Kenya</string>
+    <string name="search_placeholder">Trouvez Diani, Mara...</string>
+    <string name="featured_destinations">Destinations Vedettes</string>
+    <string name="wishlist_title">Ma Liste</string>
+    <string name="no_favorites">Aucun favori pour l\'instant</string>
+    <string name="explore_map">Explorer la Carte</string>
+    <string name="support_us">Soutenir</string>
+    <string name="watch_video">Voir la Vidéo</string>
+    <string name="view_map">Voir la Carte</string>
+    <string name="ai_guide">Guide AI de Safari</string>
+    <string name="chat_placeholder">Posez-moi des questions sur le Kenya...</string>
+</resources>

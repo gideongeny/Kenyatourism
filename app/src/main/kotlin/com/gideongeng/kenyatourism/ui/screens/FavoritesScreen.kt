@@ -1,4 +1,4 @@
-package com.kenyatourism.app.ui.screens
+package com.gideongeng.kenyatourism.ui.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.kenyatourism.app.data.Destination
-import com.kenyatourism.app.data.FavoritesManager
-import com.kenyatourism.app.ui.theme.SavannahGold
+import com.gideongeng.kenyatourism.data.Destination
+import com.gideongeng.kenyatourism.data.FavoritesManager
+import com.gideongeng.kenyatourism.ui.theme.SavannahGold
 
 @Composable
 fun FavoritesScreen(favoritesManager: FavoritesManager) {

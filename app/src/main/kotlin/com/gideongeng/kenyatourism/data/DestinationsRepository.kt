@@ -1,6 +1,20 @@
-package com.kenyatourism.app.data
+package com.gideongeng.kenyatourism.data
 
 import android.content.Context
+import androidx.room.Room
+import com.gideongeng.kenyatourism.data.local.AppDatabase
+import com.gideongeng.kenyatourism.data.local.DestinationEntity
+import com.gideongeng.kenyatourism.data.local.CommentEntity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import kotlinx.coroutines.flow.Flow
 
 data class Destination(
     val id: Int,
@@ -18,7 +32,117 @@ data class Destination(
     val activities: List<String> = emptyList()
 )
 
+data class Comment(val userName: String, val text: String, val timestamp: Long)
+
 object DestinationsRepository {
+    private var database: AppDatabase? = null
+    private val firestore = FirebaseFirestore.getInstance()
+    private val reviewsCollection = firestore.collection("public_reviews")
+    
+    private val _allDestinations = MutableStateFlow<List<Destination>>(emptyList())
+    val allDestinations: StateFlow<List<Destination>> = _allDestinations.asStateFlow()
+
+    fun getComments(destinationId: Int): Flow<List<Comment>> {
+        // Sync Firestore to Room
+        syncPublicReviews(destinationId)
+        
+        return database?.destinationDao()?.getCommentsForDestination(destinationId)?.map { entities ->
+            entities.map { Comment(it.userName, it.text, it.timestamp) }
+        } ?: kotlinx.coroutines.flow.flowOf(emptyList())
+    }
+
+    private fun syncPublicReviews(destinationId: Int) {
+        reviewsCollection
+            .whereEqualTo("destinationId", destinationId)
+            .orderBy("timestamp", Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null || snapshot == null) return@addSnapshotListener
+                
+                CoroutineScope(Dispatchers.IO).launch {
+                    val entities = snapshot.documents.mapNotNull { doc ->
+                        val text = doc.getString("text") ?: return@mapNotNull null
+                        val userName = doc.getString("userName") ?: "Traveler"
+                        val timestamp = doc.getLong("timestamp") ?: System.currentTimeMillis()
+                        CommentEntity(
+                            destinationId = destinationId,
+                            userName = userName,
+                            text = text,
+                            timestamp = timestamp
+                        )
+                    }
+                    database?.destinationDao()?.insertPublicComments(entities)
+                }
+            }
+    }
+
+    fun addComment(destinationId: Int, userName: String, text: String) {
+        val timestamp = System.currentTimeMillis()
+        val commentData = hashMapOf(
+            "destinationId" to destinationId,
+            "userName" to userName,
+            "text" to text,
+            "timestamp" to timestamp
+        )
+
+        // Save to Cloud (Firestore)
+        reviewsCollection.add(commentData)
+
+        // Save to Local Room (Immediate feedback)
+        CoroutineScope(Dispatchers.IO).launch {
+            database?.destinationDao()?.insertComment(
+                CommentEntity(destinationId = destinationId, userName = userName, text = text, timestamp = timestamp)
+            )
+        }
+    }
+
+    fun initialize(context: android.content.Context) {
+        if (database != null) return
+        
+        database = Room.databaseBuilder(
+            context,
+            AppDatabase::class.java, "kenya_tourism_db"
+        ).build()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            // Seed database if empty
+            val dao = database!!.destinationDao()
+            // We'll use a simplified check or just always insert as REPLACE
+            val entities = staticDestinations.map { it.toEntity() }
+            dao.insertAll(entities)
+            
+            // Observe database changes
+            dao.getAllDestinations().collect { entities ->
+                _allDestinations.value = entities.map { it.toDestination() }
+            }
+        }
+    }
+
+    private fun Destination.toEntity() = DestinationEntity(
+        id = id,
+        name = name,
+        category = category,
+        description = description,
+        imageUrl = imageUrl,
+        rating = rating,
+        region = region,
+        latitude = latitude,
+        longitude = longitude,
+        activities = activities.joinToString(",")
+    )
+
+    private fun DestinationEntity.toDestination() = Destination(
+        id = id,
+        name = name,
+        category = category,
+        description = description,
+        imageUrl = imageUrl,
+        rating = rating,
+        region = region,
+        latitude = latitude,
+        longitude = longitude,
+        activities = if (activities.isEmpty()) emptyList() else activities.split(",")
+    )
+
     // Helper to resolve local drawable resource
     fun getDestinationDrawable(context: Context, name: String): Int {
         try {
@@ -32,7 +156,7 @@ object DestinationsRepository {
         }
     }
 
-    val allDestinations = listOf(
+    private val staticDestinations = listOf(
         Destination(
             1, 
             "Maasai Mara National Reserve", 
@@ -359,6 +483,4 @@ object DestinationsRepository {
         Destination(114, "Vipingo Beach", "Beach", "Scenic coast.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.6f, "Coast", -3.8, 39.8, "Year-round", listOf("Beach", "Golf")),
         Destination(115, "Wasini Island", "Beach", "Coral gardens.", "https://images.unsplash.com/photo-1559827260-dc66d52bef19", emptyList(), null, 4.7f, "Coast", -4.7, 39.4, "Year-round", listOf("Snorkeling", "Dolphins"))
     )
-    
-    val destinations = allDestinations
 }

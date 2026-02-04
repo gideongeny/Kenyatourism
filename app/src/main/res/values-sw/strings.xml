@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Tembea Kenya</string>
+    <string name="dashboard_title">TEMBEA KENYA</string>
+    <string name="dashboard_subtitle">Gundua Hazina Zilizofichika za Kenya</string>
+    <string name="search_placeholder">Tafuta Diani, Mara...</string>
+    <string name="featured_destinations">Maeneo Yanayopendekezwa</string>
+    <string name="wishlist_title">Orodha Yangu</string>
+    <string name="no_favorites">Hakuna mapendekezo bado</string>
+    <string name="explore_map">Chunguza Ramani</string>
+    <string name="support_us">Saidie</string>
+    <string name="watch_video">Tazama Video</string>
+    <string name="view_map">Tazama Ramani</string>
+    <string name="ai_guide">Mwongozo wa AI wa Safari</string>
+    <string name="chat_placeholder">Niulize kuhusu Kenya...</string>
+</resources>

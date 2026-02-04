@@ -1,4 +1,4 @@
-package com.kenyatourism.app.data
+package com.gideongeng.kenyatourism.data
 
 import android.content.Context
 import android.content.SharedPreferences

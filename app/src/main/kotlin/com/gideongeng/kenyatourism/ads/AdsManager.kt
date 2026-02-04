@@ -1,4 +1,4 @@
-package com.kenyatourism.app.ads
+package com.gideongeng.kenyatourism.ads
 
 import android.app.Activity
 import android.content.Context
