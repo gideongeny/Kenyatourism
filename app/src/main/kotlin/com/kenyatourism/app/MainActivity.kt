@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -181,14 +182,24 @@ fun DashboardHeader() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp)
-            .background(
-                Brush.verticalGradient(
-                    listOf(MaasaiRed, SavannahGold)
-                )
-            ),
+            .height(250.dp), // Increased height for better visual impact
         contentAlignment = Alignment.Center
     ) {
+        // Background Image
+        Image(
+            painter = androidx.compose.ui.res.painterResource(id = R.drawable.header_background),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+
+        // Dark Overlay for Text Readability
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black.copy(alpha = 0.4f))
+        )
+
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = "TEMBEA KENYA",
@@ -201,7 +212,8 @@ fun DashboardHeader() {
             Text(
                 text = "Discover Kenya's Hidden Treasures",
                 style = MaterialTheme.typography.bodyLarge.copy(
-                    color = Color.White.copy(alpha = 0.8f)
+                    color = Color.White.copy(alpha = 0.9f),
+                    fontWeight = FontWeight.SemiBold
                 )
             )
         }
