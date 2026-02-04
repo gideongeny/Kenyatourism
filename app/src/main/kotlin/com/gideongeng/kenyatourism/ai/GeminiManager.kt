@@ -13,7 +13,7 @@ object GeminiManager {
 
     fun initialize(apiKey: String) {
         model = GenerativeModel(
-            modelName = "gemini-pro",
+            modelName = "gemini-1.5-flash",
             apiKey = apiKey
         )
     }

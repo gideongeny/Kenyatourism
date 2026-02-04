@@ -189,22 +189,31 @@ fun DestinationCard(destination: Destination, favoritesManager: FavoritesManager
                     )
             )
             
-            GlassBox(
+            Box(
                 modifier = Modifier
                     .align(Alignment.BottomStart)
                     .fillMaxWidth()
-                    .padding(8.dp)
+                    .padding(16.dp)
             ) {
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
+                Column {
                     Text(
                         text = destination.name,
-                        style = MaterialTheme.typography.headlineMedium.copy(color = Color.White)
+                        style = MaterialTheme.typography.headlineSmall.copy(
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold,
+                            shadow = androidx.compose.ui.graphics.Shadow(
+                                color = Color.Black.copy(alpha = 0.5f),
+                                offset = androidx.compose.ui.geometry.Offset(2f, 2f),
+                                blurRadius = 4f
+                            )
+                        )
                     )
                     Text(
                         text = "${destination.category} • ${destination.region}",
-                        style = MaterialTheme.typography.bodyLarge.copy(color = SavannahGold)
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            color = SavannahGold,
+                            fontWeight = FontWeight.Medium
+                        )
                     )
                 }
             }

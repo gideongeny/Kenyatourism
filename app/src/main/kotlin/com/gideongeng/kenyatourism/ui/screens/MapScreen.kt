@@ -31,8 +31,8 @@ fun MapScreen(viewModel: DestinationViewModel) {
 
     val satelliteTileSource = remember {
         XYTileSource(
-            "Esri Satellite",
-            0, 18, 256, ".jpg",
+            "Esri",
+            1, 19, 256, ".jpg",
             arrayOf("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/"),
             "© Esri"
         )
