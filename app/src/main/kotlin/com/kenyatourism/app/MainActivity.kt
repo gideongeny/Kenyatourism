@@ -50,6 +50,11 @@ import com.kenyatourism.app.ui.theme.MaasaiRed
 import com.kenyatourism.app.ui.theme.SafariGreen
 import com.kenyatourism.app.ui.theme.SavannahGold
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import org.json.JSONObject
+import java.net.HttpURLConnection
+import java.net.URL
 
 class MainActivity : ComponentActivity() {
     private lateinit var favoritesManager: FavoritesManager
@@ -170,7 +175,9 @@ fun MainDashboard(favoritesManager: FavoritesManager, onDestinationClick: (Desti
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.colorScheme.background),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        contentPadding = PaddingValues(bottom = 100.dp)
     ) {
         item {
             DashboardHeader()
@@ -229,14 +236,12 @@ fun MainDashboard(favoritesManager: FavoritesManager, onDestinationClick: (Desti
         }
 
         items(filteredDestinations) { destination ->
-            DestinationCard(destination, favoritesManager, onClick = { 
-                onDestinationClick(destination)
-                AdsManager.showInterstitial(context as ComponentActivity)
-            })
-        }
-        
-        item {
-            Spacer(modifier = Modifier.height(80.dp)) // Bottom padding
+            Box(modifier = Modifier.padding(horizontal = 16.dp)) {
+                DestinationCard(destination, favoritesManager, onClick = { 
+                    onDestinationClick(destination)
+                    AdsManager.showInterstitial(context as ComponentActivity)
+                })
+            }
         }
     }
 }
@@ -380,6 +385,7 @@ fun DestinationCard(destination: Destination, favoritesManager: FavoritesManager
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun DestinationDetailScreen(
     destination: Destination,
@@ -465,8 +471,8 @@ fun DestinationDetailScreen(
                         }
                     }
 
-                    // Weather Widget (Simulated)
-                    WeatherWidget()
+                    // Weather Widget (Real-time)
+                    WeatherWidget(destination.latitude ?: -1.2921, destination.longitude ?: 36.8219)
 
                     Spacer(modifier = Modifier.height(16.dp))
                     
@@ -477,6 +483,25 @@ fun DestinationDetailScreen(
                     )
 
                     Spacer(modifier = Modifier.height(24.dp))
+
+                    // Activities Section
+                    if (destination.activities.isNotEmpty()) {
+                        Text(
+                            text = "Top Activities",
+                            style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
+                            modifier = Modifier.padding(bottom = 12.dp)
+                        )
+                        FlowRow(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            destination.activities.forEach { activity ->
+                                Chip(text = activity)
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(24.dp))
+                    }
 
                     // Action Buttons Row
                     Row(
@@ -524,8 +549,18 @@ fun DestinationDetailScreen(
     }
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun WeatherWidget() {
+fun WeatherWidget(lat: Double, lon: Double) {
+    var weatherData by remember { mutableStateOf<WeatherData?>(null) }
+    var isLoading by remember { mutableStateOf(true) }
+
+    LaunchedEffect(lat, lon) {
+        isLoading = true
+        weatherData = fetchWeather(lat, lon)
+        isLoading = false
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -536,24 +571,60 @@ fun WeatherWidget() {
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "☀️", 
-                style = MaterialTheme.typography.displayMedium
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Column {
+            if (isLoading) {
+                CircularProgressIndicator(modifier = Modifier.size(24.dp), strokeWidth = 2.dp)
+                Spacer(modifier = Modifier.width(16.dp))
+                Text("Fetching weather...")
+            } else {
                 Text(
-                    text = "Current Weather",
-                    style = MaterialTheme.typography.labelMedium,
-                    color = Color.Gray
+                    text = weatherData?.icon ?: "☀️", 
+                    style = MaterialTheme.typography.displayMedium
                 )
-                Text(
-                    text = "28°C • Sunny",
-                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                    color = Color(0xFF1565C0)
-                )
+                Spacer(modifier = Modifier.width(16.dp))
+                Column {
+                    Text(
+                        text = "Current Weather",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = Color.Gray
+                    )
+                    Text(
+                        text = "${weatherData?.temp ?: "--"}°C • ${weatherData?.status ?: "Unknown"}",
+                        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                        color = Color(0xFF1565C0)
+                    )
+                }
             }
         }
+    }
+}
+
+data class WeatherData(val temp: Int, val status: String, val icon: String)
+
+suspend fun fetchWeather(lat: Double, lon: Double): WeatherData = withContext(Dispatchers.IO) {
+    try {
+        val urlStr = "https://api.open-meteo.com/v1/forecast?latitude=$lat&longitude=$lon&current_weather=true"
+        val connection = URL(urlStr).openConnection() as HttpURLConnection
+        val response = connection.inputStream.bufferedReader().use { it.readText() }
+        val json = JSONObject(response)
+        val current = json.getJSONObject("current_weather")
+        val temp = current.getDouble("temperature").toInt()
+        val code = current.getInt("weathercode")
+        
+        val (status, icon) = when (code) {
+            0 -> "Clear" to "☀️"
+            1, 2, 3 -> "Partly Cloudy" to "⛅"
+            45, 48 -> "Foggy" to "🌫️"
+            51, 53, 55 -> "Drizzle" to "🌦️"
+            61, 63, 65 -> "Rain" to "🌧️"
+            71, 73, 75 -> "Snow" to "❄️"
+            80, 81, 82 -> "Showers" to "🌦️"
+            95, 96, 99 -> "Thunderstorm" to "⛈️"
+            else -> "Fine" to "☀️"
+        }
+        
+        WeatherData(temp, status, icon)
+    } catch (e: Exception) {
+        WeatherData(25, "Partly Cloudy", "⛅") // Fallback
     }
 }
 
