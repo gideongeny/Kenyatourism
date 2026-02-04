@@ -12,6 +12,7 @@
 # AdMob rules
 -keep class com.google.android.gms.ads.** { *; }
 -keep interface com.google.android.gms.ads.** { *; }
+-keep class com.kenyatourism.app.ads.AdsManager { *; }
 
 # Coil rules
 -keep class coil.** { *; }
