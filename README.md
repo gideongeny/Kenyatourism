@@ -1,224 +1,106 @@
-# 🇰🇪 Kenya Tourism - Magical Kenya 2026
+# 🇰🇪 Kenya Tourism - World Class Safari Companion 2026
 
 <div align="center">
 
 ![Kenya Tourism Icon](app/src/main/ic_launcher-web.jpg)
 
-**Discover the Magic of Kenya - Your Ultimate Tourism Companion**
+**Experience the Magic of Kenya - Powered by Gemini AI & Open Source Maps**
 
 [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://www.android.com/)
 [![Kotlin](https://img.shields.io/badge/Language-Kotlin-purple.svg)](https://kotlinlang.org/)
 [![Jetpack Compose](https://img.shields.io/badge/UI-Jetpack%20Compose-blue.svg)](https://developer.android.com/jetpack/compose)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Gemini AI](https://img.shields.io/badge/AI-Gemini%201.5%20Flash-orange.svg)](https://deepmind.google/technologies/gemini/)
+[![Firebase](https://img.shields.io/badge/Backend-Firebase-ffca28.svg)](https://firebase.google.com/)
 
 </div>
+
+---
 
 ## 📱 App Preview
 
 <p align="center">
   <img src="docs/assets/screen_1.jpg" width="250" alt="Home Screen" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
-  <img src="docs/assets/screen_2.jpg" width="250" alt="Details Screen" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
-  <img src="docs/assets/screen_3.jpg" width="250" alt="Favorites" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
+  <img src="docs/assets/screen_2.jpg" width="250" alt="Safari AI Guide" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
+  <img src="docs/assets/screen_3.jpg" width="250" alt="Explore Map" style="border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5);"/>
 </p>
 
-## ✨ Overview
+## ✨ "World Class" Transformation
 
-**Kenya Tourism** is a world-class Android application showcasing the breathtaking beauty and diverse attractions of Kenya. Built with modern Android development practices, this app features stunning 3D animations, a premium UI/UX design inspired by Kenyan heritage, and comprehensive information about 100+ tourist destinations across the country.
+This application has been transformed from a basic tourism app into a **World-Class Commercial Platform**. It combines premium aesthetics with cutting-edge technology to offer a seamless experience for global travelers.
 
-## 🌟 Features
+## 🌟 Key Features
 
-### 🎨 Premium Design
-- **Savannah-Inspired Color Palette**: Featuring Savannah Gold, Maasai Red, and Safari Green
-- **3D Card Animations**: Smooth, interactive destination cards with rotation effects
-- **Glassmorphism Effects**: Modern, premium visual aesthetics
-- **Dark Mode Support**: Adaptive theming for optimal viewing
+### 🤖 Safari AI Guide (Gemini 1.5 Flash)
+- **Real-time AI Assistant**: Powered by the latest **Gemini 1.5 Flash** (SDK 0.9.0) for lightning-fast responses.
+- **Expert Safari Persona**: Meets users as 'Jambo', a professional guide with deep knowledge of Kenyan wildlife and culture.
+- **Swahili Integration**: Professional yet friendly tone using authentic Swahili phrases.
 
-### 🗺️ Comprehensive Content
-- **100+ Destinations**: Curated list of Kenya's finest attractions
-- **Categories**: Safaris, Beaches, Cultural Sites, National Parks, and more
-- **Detailed Information**: Rich descriptions, ratings, and regional data
-- **High-Quality Images**: Stunning photography from Unsplash
+### 🗺️ Fee-Free Global Mapping (OSM)
+- **OpenStreetMap Integration**: Switched from Google Maps to **OSMDroid** to eliminate API billing.
+- **Zero-Cost Scaling**: Perfect for millions of users without surprise fees.
+- **Interactive Exploration**: High-performance markers and intuitive navigation across all 100+ destinations.
 
-### 💰 Monetization
-- **Google AdMob Integration**
-  - Banner Ads: Non-intrusive bottom placement
-  - Interstitial Ads: Strategic placement between navigation
-  - Rewarded Ads: Premium content unlocking
+### 🌍 Global Community & Reviews
+- **Firebase Firestore Sync**: User reviews and ratings sync instantly to a global real-time database.
+- **Authentic Feedback**: Help fellow travelers discover the best spots with community-driven insights.
 
-### 🚀 Technical Excellence
-- **Jetpack Compose**: Modern declarative UI framework
-- **Kotlin**: 100% Kotlin codebase
-- **Material Design 3**: Latest design system implementation
-- **Coil**: Efficient image loading
-- **MVVM Architecture**: Clean, maintainable code structure
+### 🎨 Ultra-Premium UI/UX
+- **Refreshed Aesthetic**: High-contrast gradient overlays for crystal-clear readability on stunning safari photography.
+- **Fluid Core**: 3D rotation animations, smooth transitions, and a savannah-inspired design system.
+- **Modern Architecture**: Built with **Jetpack Compose** and **MVVM** for robust performance.
 
 ## 🛠️ Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| Kotlin | Primary programming language |
-| Jetpack Compose | Modern UI toolkit |
-| Material Design 3 | Design system |
-| Coil | Image loading library |
-| Google Mobile Ads SDK | Monetization |
-| Gradle 8.5 | Build system |
-| Android Gradle Plugin 8.1.0 | Android build configuration |
+| Category | Technology |
+|----------|------------|
+| **Core** | Kotlin, Coroutines, Flow |
+| **UI** | Jetpack Compose, Material 3 |
+| **AI** | Google Generative AI (Gemini 1.5 Flash) |
+| **Maps** | OSMDroid (OpenStreetMap) |
+| **Database** | Room (Offline Support), Firebase Firestore (Live Reviews) |
+| **Analytics** | Firebase Analytics & Google Services |
+| **Images** | Coil, Lottie |
 
-## 📋 Prerequisites
+## 🚀 Deployment & Build
 
-- Android Studio Iguana (2023.2.1) or newer
-- JDK 11 or higher
-- Android SDK 34 (compileSdk)
-- Minimum SDK 24 (Android 7.0)
+### Package Name: `com.gideongeng.kenyatourism`
 
-## 🚀 Getting Started
+#### 🔧 Required Configuration
+1.  **Firebase**: Ensure `google-services.json` is present in the `app/` directory.
+2.  **API Key**: The Gemini API key is integrated in `MainActivity.kt`.
 
-### Clone the Repository
+#### 📦 Build Commands
+```bash
+# Clean and Build Debug APK
+./gradlew clean assembleDebug
 
-\`\`\`bash
-git clone https://github.com/gideongeny/Kenyatourism.git
-cd Kenyatourism
-\`\`\`
-
-### Open in Android Studio
-
-1. Launch Android Studio
-2. Select **File > Open**
-3. Navigate to the cloned repository
-4. Click **OK** and wait for Gradle sync
-
-### Build the Project
-
-\`\`\`bash
-# Debug APK
-./gradlew assembleDebug
-
-# Release APK
-./gradlew assembleRelease
-
-# Android App Bundle (AAB)
+# Build Production App Bundle (AAB)
 ./gradlew bundleDebug
-\`\`\`
+```
 
-### Run on Device/Emulator
+## 📂 Project Structure
 
-1. Connect your Android device or start an emulator
-2. Click the **Run** button in Android Studio
-3. Select your target device
-
-## 🔧 Configuration
-
-### AdMob Setup
-
-The app is pre-configured with AdMob IDs. To use your own:
-
-1. Open `app/src/main/AndroidManifest.xml`
-2. Replace the AdMob App ID:
-   \`\`\`xml
-   <meta-data
-       android:name="com.google.android.gms.ads.APPLICATION_ID"
-       android:value="YOUR_ADMOB_APP_ID"/>
-   \`\`\`
-
-3. Update ad unit IDs in `AdsManager.kt`:
-   \`\`\`kotlin
-   private const val BANNER_ID = "YOUR_BANNER_ID"
-   private const val INTERSTITIAL_ID = "YOUR_INTERSTITIAL_ID"
-   private const val REWARDED_ID = "YOUR_REWARDED_ID"
-   \`\`\`
-
-## 📦 Project Structure
-
-\`\`\`
+```
 Kenyatourism/
 ├── app/
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── kotlin/com/kenyatourism/app/
-│   │   │   │   ├── ads/           # AdMob integration
-│   │   │   │   ├── data/          # Data models & repository
-│   │   │   │   ├── ui/theme/      # Design system
+│   │   │   ├── kotlin/com/gideongeng/kenyatourism/
+│   │   │   │   ├── ai/            # Gemini AI Logic
+│   │   │   │   ├── data/          # Room & Firestore Repositories
+│   │   │   │   ├── ui/            # Screens & Components
 │   │   │   │   └── MainActivity.kt
-│   │   │   ├── res/
-│   │   │   │   ├── drawable/      # Vector graphics
-│   │   │   │   ├── mipmap/        # App icons
-│   │   │   │   ├── values/        # Themes, colors, strings
-│   │   │   │   └── xml/           # Backup rules
+│   │   │   ├── res/               # Premium Resources
 │   │   │   └── AndroidManifest.xml
 │   │   └── build.gradle.kts
-│   └── build.gradle.kts
-├── gradle/
-├── build.gradle.kts
-└── settings.gradle.kts
-\`\`\`
-
-## 🎯 Key Components
-
-### MainActivity
-The main entry point featuring:
-- Jetpack Compose UI
-- 3D card animations with `graphicsLayer`
-- AdMob integration
-- Destination listing with LazyColumn
-
-### DestinationsRepository
-Comprehensive data source with 100+ Kenyan destinations including:
-- Maasai Mara National Reserve
-- Diani Beach
-- Mount Kenya
-- Lamu Old Town
-- And many more...
-
-### AdsManager
-Centralized ad management for:
-- Banner ad loading and display
-- Interstitial ad preloading
-- Rewarded ad implementation
-
-## 🌈 Design System
-
-### Color Palette
-- **Savannah Gold**: `#FFD700` - Primary accent
-- **Maasai Red**: `#BB0A1E` - Tertiary accent
-- **Safari Green**: `#06402B` - Secondary accent
-- **Obsidian Black**: `#121212` - Dark mode background
-- **Ivory White**: `#F5F5F0` - Light mode background
-
-### Typography
-- **Display Large**: 32sp, Bold - Headers
-- **Headline Medium**: 24sp, SemiBold - Section titles
-- **Body Large**: 16sp, Normal - Content text
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+│   └── google-services.json
+└── build.gradle.kts
+```
 
 ## 👨‍💻 Author
 
 **Gideon Geny**
 - GitHub: [@gideongeny](https://github.com/gideongeny)
-
-## 🙏 Acknowledgments
-
-- **Unsplash**: High-quality destination images
-- **Google Mobile Ads**: Monetization platform
-- **Jetpack Compose**: Modern UI framework
-- **Kenya Tourism Board**: Inspiration and content
-
-## 📞 Support
-
-For issues, questions, or contributions:
-- Open an issue on [GitHub Issues](https://github.com/gideongeny/Kenyatourism/issues)
-- Submit a pull request
-
-## 🗺️ Roadmap
-
-- [ ] Offline mode support
-- [ ] Booking integration
-- [ ] User reviews and ratings
-- [ ] Interactive maps
-- [ ] Multi-language support
-- [ ] Social media sharing
 
 ---
 
@@ -226,6 +108,6 @@ For issues, questions, or contributions:
 
 **Made with ❤️ for Kenya**
 
-*Discover. Explore. Experience.*
+*Discover. Explore. Experience. Magically.*
 
 </div>
