@@ -99,7 +99,7 @@ Kenyatourism/
 
 ## 👨‍💻 Author
 
-**Gideon Geny**
+**Gideon Ngeny**
 - GitHub: [@gideongeny](https://github.com/gideongeny)
 
 ---
