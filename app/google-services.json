@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "624447839121",
+    "project_id": "tembeakenya-a52dc",
+    "storage_bucket": "tembeakenya-a52dc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624447839121:android:0bd1882a9393276e411830",
+        "android_client_info": {
+          "package_name": "com.gideongeng.kenyatourism"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBi2IC6JA8v6RU_SFKTm2-C5b2upIU4r0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

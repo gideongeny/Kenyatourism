@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tembea Kenya</string>
+    <string name="default_web_client_id" translatable="false">624447839121-oq8tho5s5ekoqlr5s73vk55j98qv3a0s.apps.googleusercontent.com</string>
+    <string name="dashboard_title">TEMBEA KENYA</string>
+    <string name="dashboard_subtitle">केन्या के छिपे हुए खजाने की खोज करें</string>
+    <string name="search_placeholder">खोजें Diani, Mara...</string>
+    <string name="featured_destinations">प्रसिद्ध स्थल</string>
+    <string name="wishlist_title">मेरी सूची</string>
+    <string name="no_favorites">अभी तक कोई पसंदीदा नहीं</string>
+    <string name="explore_map">मानचित्र खोजें</string>
+    <string name="support_us">समर्थन</string>
+    <string name="watch_video">वीडियो देखें</string>
+    <string name="view_map">मानचित्र देखें</string>
+    <string name="ai_guide">सफारी एआई गाइड</string>
+    <string name="chat_placeholder">मुझसे केन्या के बारे में पूछें...</string>
+    
+    <string name="welcome_title">Karibu Kenya</string>
+    <string name="welcome_subtitle">अफ्रीका के सबसे खूबसूरत स्थलों का आपका द्वार</string>
+    <string name="welcome_explore">खोजना शुरू करें</string>
+    <string name="welcome_sign_in">साइन इन करें</string>
+    <string name="welcome_skip">अतिथि के रूप में जारी रखें</string>
+    <string name="select_language">अपनी भाषा चुनें</string>
+    
+    <string name="sign_in">साइन इन करें</string>
+    <string name="sign_up">साइन अप करें</string>
+    <string name="sign_out">साइन आउट करें</string>
+    <string name="sign_in_google">Google के साथ जारी रखें</string>
+    <string name="sign_in_email">ईमेल से साइन इन करें</string>
+    <string name="sign_in_anonymous">अतिथि के रूप में जारी रखें</string>
+    <string name="email_hint">ईमेल पता</string>
+    <string name="password_hint">पासवर्ड</string>
+    <string name="or_divider">या</string>
+    <string name="auth_error">प्रमाणीकरण विफल रहा। कृपया पुनः प्रयास करें।</string>
+    <string name="no_account">क्या आपका खाता नहीं है?</string>
+    <string name="have_account">क्या आपके पास पहले से खाता है?</string>
+    
+    <string name="settings">सेटिंग्स</string>
+    <string name="profile">प्रोफ़ाइल</string>
+    <string name="guest_user">अतिथि</string>
+    <string name="language">भाषा</string>
+    <string name="notifications">सूचनाएं</string>
+    <string name="about">Tembea Kenya के बारे में</string>
+    <string name="privacy_policy">गोपनीयता नीति</string>
+    <string name="guidelines">समुदाय दिशानिर्देश</string>
+    <string name="contact_us">संपर्क करें</string>
+    <string name="app_version">ऐप संस्करण</string>
+    <string name="rate_app">इस ऐप को रेट करें</string>
+    <string name="share_app">ऐप साझा करें</string>
+    <string name="dark_mode">डार्क मोड</string>
+    
+    <string name="about_title">Tembea Kenya के बारे में</string>
+    <string name="about_vision">हमारा दृष्टिकोण</string>
+    <string name="about_vision_text">केन्या की समृद्ध सांस्कृतिक विरासत, शानदार परिदृश्य और विविध वन्यजीवों की खोज के लिए परम डिजिटल साथी बनना।</string>
+    <string name="about_goal">हमारा लक्ष्य</string>
+    <string name="about_goal_text">व्यापक और अद्यतित जानकारी प्रदान करके यात्रियों को प्रामाणिक केन्याई अनुभवों से जोड़ना।</string>
+    
+    <string name="privacy_title">गोपनीयता नीति</string>
+    <string name="privacy_text">हम आपको सर्वोत्तम यात्रा अनुभव प्रदान करने के लिए केवल न्यूनतम आवश्यक डेटा एकत्र करते हैं। प्रश्नों के लिए gideongeng@gmail.com पर संपर्क करें।</string>
+    
+    <string name="guidelines_title">समुदाय दिशानिर्देश</string>
+    <string name="guidelines_text">Tembea Kenya समुदाय में आपका स्वागत है! कृपया सम्मानजनक रहें और वन्यजीवों की रक्षा करें।</string>
+    
+    <string name="filter_all">सभी</string>
+    <string name="filter_rating">रेटिंग</string>
+    <string name="filter_region">क्षेत्र</string>
+    <string name="sort_by">क्रमबद्ध करें</string>
+    <string name="sort_name">नाम</string>
+    <string name="sort_rating">रेटिंग</string>
+    <string name="filter_results">%d स्थल मिले</string>
+    <string name="clear_filters">फ़िल्टर साफ़ करें</string>
+    
+    <string name="nav_home">होम</string>
+    <string name="nav_map">मानचित्र</string>
+    <string name="nav_ai">एआई गाइड</string>
+    <string name="nav_wishlist">मेरी सूची</string>
+</resources>

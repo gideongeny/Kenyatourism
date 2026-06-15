@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tembea Kenya</string>
+    <string name="default_web_client_id" translatable="false">624447839121-oq8tho5s5ekoqlr5s73vk55j98qv3a0s.apps.googleusercontent.com</string>
+    <string name="dashboard_title">TEMBEA KENYA</string>
+    <string name="dashboard_subtitle">Gundua Hazina Zilizofichwa za Kenya</string>
+    <string name="search_placeholder">Tafuta Diani, Mara...</string>
+    <string name="featured_destinations">Maeneo Maarufu</string>
+    <string name="wishlist_title">Orodha Yangu</string>
+    <string name="no_favorites">Hakuna vipendwa bado</string>
+    <string name="explore_map">Chunguza Ramani</string>
+    <string name="support_us">Msaada</string>
+    <string name="watch_video">Tazama Video</string>
+    <string name="view_map">Tazama Ramani</string>
+    <string name="ai_guide">Mwongozo wa AI wa Safari</string>
+    <string name="chat_placeholder">Niulize kuhusu Kenya...</string>
+    
+    <string name="welcome_title">Karibu Kenya</string>
+    <string name="welcome_subtitle">Njia Yako ya Kuelekea Maeneo Mazuri Zaidi Barani Afrika</string>
+    <string name="welcome_explore">Anza Kuchunguza</string>
+    <string name="welcome_sign_in">Ingia</string>
+    <string name="welcome_skip">Endelea kama Mgeni</string>
+    <string name="select_language">Chagua Lugha Yako</string>
+    
+    <string name="sign_in">Ingia</string>
+    <string name="sign_up">Jisajili</string>
+    <string name="sign_out">Ondoka</string>
+    <string name="sign_in_google">Endelea na Google</string>
+    <string name="sign_in_email">Ingia na Barua Pepe</string>
+    <string name="sign_in_anonymous">Endelea kama Mgeni</string>
+    <string name="email_hint">Anwani ya barua pepe</string>
+    <string name="password_hint">Nenosiri</string>
+    <string name="or_divider">au</string>
+    <string name="auth_error">Kuingia kumeshindwa. Tafadhali jaribu tena.</string>
+    <string name="no_account">Hauna akaunti?</string>
+    <string name="have_account">Tayari una akaunti?</string>
+    
+    <string name="settings">Mipangilio</string>
+    <string name="profile">Wasifu</string>
+    <string name="guest_user">Mgeni</string>
+    <string name="language">Lugha</string>
+    <string name="notifications">Arifa</string>
+    <string name="about">Kuhusu Tembea Kenya</string>
+    <string name="privacy_policy">Sera ya Faragha</string>
+    <string name="guidelines">Miongozo ya Jamii</string>
+    <string name="contact_us">Wasiliana Nasi</string>
+    <string name="app_version">Toleo la Programu</string>
+    <string name="rate_app">Kadiria Programu Hii</string>
+    <string name="share_app">Shiriki Programu</string>
+    <string name="dark_mode">Hali ya Giza</string>
+    
+    <string name="about_title">Kuhusu Tembea Kenya</string>
+    <string name="about_vision">Maono Yetu</string>
+    <string name="about_vision_text">Kuwa mwandamani wa kidijitali wa kuchunguza urithi tajiri wa kitamaduni wa Kenya, mandhari nzuri, na wanyamapori anuwai — kufanya kila pembe ya taifa hili zuri kufikiwa na wasafiri ulimwenguni kote.</string>
+    <string name="about_goal">Lengo Letu</string>
+    <string name="about_goal_text">Tembea Kenya inalenga kuunganisha wasafiri na uzoefu halisi wa Kenya kwa kutoa taarifa za kina, zilizoratibiwa, na za kisasa kuhusu maeneo katika kaunti zote 47. Tunaamini kila safari huanza na msukumo.</string>
+    
+    <string name="privacy_title">Sera ya Faragha</string>
+    <string name="privacy_text">Tembea Kenya inaheshimu faragha yako. Tunakusanya tu data ya chini inayohitajika ili kukupa uzoefu bora wa kusafiri.\n\nTuhauzi taarifa zako za kibinafsi kwa watu wengine. Kwa maswali, wasiliana nasi kwa gideongeng@gmail.com.</string>
+    
+    <string name="guidelines_title">Miongozo ya Jamii</string>
+    <string name="guidelines_text">Karibu kwenye jamii ya Tembea Kenya! \n1. Kuwa na heshima\n2. Shiriki uzoefu halisi\n3. Heshimu tamaduni za wenyeji\n4. Linda wanyamapori\n5. Usiache takataka\n6. Ripoti masuala.</string>
+    
+    <string name="filter_all">Yote</string>
+    <string name="filter_rating">Ukadiriaji</string>
+    <string name="filter_region">Mkoa</string>
+    <string name="sort_by">Panga kwa</string>
+    <string name="sort_name">Jina</string>
+    <string name="sort_rating">Ukadiriaji</string>
+    <string name="filter_results">Maeneo %d yamepatikana</string>
+    <string name="clear_filters">Futa Vichungi</string>
+    
+    <string name="nav_home">Nyumbani</string>
+    <string name="nav_map">Ramani</string>
+    <string name="nav_ai">Mwongozo wa AI</string>
+    <string name="nav_wishlist">Orodha Yangu</string>
+</resources>

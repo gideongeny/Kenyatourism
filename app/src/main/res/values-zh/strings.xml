@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tembea Kenya</string>
+    <string name="default_web_client_id" translatable="false">624447839121-oq8tho5s5ekoqlr5s73vk55j98qv3a0s.apps.googleusercontent.com</string>
+    <string name="dashboard_title">TEMBEA KENYA</string>
+    <string name="dashboard_subtitle">发现肯尼亚隐藏的宝藏</string>
+    <string name="search_placeholder">寻找 Diani, Mara...</string>
+    <string name="featured_destinations">精选目的地</string>
+    <string name="wishlist_title">我的心愿单</string>
+    <string name="no_favorites">还没有收藏</string>
+    <string name="explore_map">探索地图</string>
+    <string name="support_us">支持</string>
+    <string name="watch_video">观看视频</string>
+    <string name="view_map">查看地图</string>
+    <string name="ai_guide">Safari AI 指南</string>
+    <string name="chat_placeholder">问我关于肯尼亚的问题...</string>
+    
+    <string name="welcome_title">Karibu Kenya</string>
+    <string name="welcome_subtitle">通往非洲最美丽目的地的门户</string>
+    <string name="welcome_explore">开始探索</string>
+    <string name="welcome_sign_in">登录</string>
+    <string name="welcome_skip">作为访客继续</string>
+    <string name="select_language">选择您的语言</string>
+    
+    <string name="sign_in">登录</string>
+    <string name="sign_up">注册</string>
+    <string name="sign_out">登出</string>
+    <string name="sign_in_google">使用 Google 继续</string>
+    <string name="sign_in_email">使用电子邮件登录</string>
+    <string name="sign_in_anonymous">作为访客继续</string>
+    <string name="email_hint">电子邮件地址</string>
+    <string name="password_hint">密码</string>
+    <string name="or_divider">或</string>
+    <string name="auth_error">身份验证失败。请再试一次。</string>
+    <string name="no_account">没有帐户？</string>
+    <string name="have_account">已有帐户？</string>
+    
+    <string name="settings">设置</string>
+    <string name="profile">个人资料</string>
+    <string name="guest_user">访客</string>
+    <string name="language">语言</string>
+    <string name="notifications">通知</string>
+    <string name="about">关于 Tembea Kenya</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="guidelines">社区准则</string>
+    <string name="contact_us">联系我们</string>
+    <string name="app_version">应用版本</string>
+    <string name="rate_app">评价此应用</string>
+    <string name="share_app">分享应用</string>
+    <string name="dark_mode">深色模式</string>
+    
+    <string name="about_title">关于 Tembea Kenya</string>
+    <string name="about_vision">我们的愿景</string>
+    <string name="about_vision_text">成为探索肯尼亚丰富文化遗产、令人惊叹的风景和多样化野生动物的终极数字伴侣。</string>
+    <string name="about_goal">我们的目标</string>
+    <string name="about_goal_text">Tembea Kenya 旨在通过提供全面、最新且经过策划的旅游目的地信息，让旅行者体验真实的肯尼亚。</string>
+    
+    <string name="privacy_title">隐私政策</string>
+    <string name="privacy_text">我们仅收集为您提供最佳旅行体验所需的最少数据。如有疑问，请通过 gideongeng@gmail.com 联系我们。</string>
+    
+    <string name="guidelines_title">社区准则</string>
+    <string name="guidelines_text">欢迎来到 Tembea Kenya 社区！请尊重他人并保护野生动物。</string>
+    
+    <string name="filter_all">全部</string>
+    <string name="filter_rating">评分</string>
+    <string name="filter_region">区域</string>
+    <string name="sort_by">排序方式</string>
+    <string name="sort_name">名称</string>
+    <string name="sort_rating">评分</string>
+    <string name="filter_results">找到 %d 个目的地</string>
+    <string name="clear_filters">清除过滤器</string>
+    
+    <string name="nav_home">首页</string>
+    <string name="nav_map">地图</string>
+    <string name="nav_ai">AI 指南</string>
+    <string name="nav_wishlist">心愿单</string>
+</resources>
