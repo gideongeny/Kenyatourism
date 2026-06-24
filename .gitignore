@@ -1,0 +1,28 @@
+# Built outputs - don't commit APKs/AABs to git
+app/build/
+build/
+.gradle/
+local.properties
+
+# Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Keystore - NEVER commit keystores
+*.keystore
+*.jks
+
+# Google services - keep this as it has no private keys
+# app/google-services.json
+
+# Gradle wrapper
+!gradle/wrapper/gradle-wrapper.jar

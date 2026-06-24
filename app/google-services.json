@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "624447839121",
+    "project_id": "tembeakenya-a52dc",
+    "storage_bucket": "tembeakenya-a52dc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624447839121:android:0bd1882a9393276e411830",
+        "android_client_info": {
+          "package_name": "com.gideongeng.kenyatourism"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624447839121-6435atfcur5stafb1eqkrl3d0ce8d5hn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gideongeng.kenyatourism",
+            "certificate_hash": "6ed03582755bad4bcd208b52b0cb2225c1ba9030"
+          }
+        },
+        {
+          "client_id": "624447839121-br7ok8jpgfhivj0gcsgorkuotdljgnv7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gideongeng.kenyatourism",
+            "certificate_hash": "3ee91726e52e47b39cf761db8564011f4220bdcc"
+          }
+        },
+        {
+          "client_id": "624447839121-k3vkmoiqi9ou5retemfcpvpom6t3bbjd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gideongeng.kenyatourism",
+            "certificate_hash": "7ccc6b78af789e9c88dc2862c1071a6d462090fa"
+          }
+        },
+        {
+          "client_id": "624447839121-oq8tho5s5ekoqlr5s73vk55j98qv3a0s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBi2IC6JA8v6RU_SFKTm2-C5b2upIU4r0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624447839121-oq8tho5s5ekoqlr5s73vk55j98qv3a0s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

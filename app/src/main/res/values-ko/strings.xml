@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tembea Kenya</string>
+    <string name="default_web_client_id" translatable="false">624447839121-oq8tho5s5ekoqlr5s73vk55j98qv3a0s.apps.googleusercontent.com</string>
+    <string name="dashboard_title">TEMBEA KENYA</string>
+    <string name="dashboard_subtitle">케냐의 숨겨진 보물 발견하기</string>
+    <string name="search_placeholder">Diani, Mara 검색...</string>
+    <string name="featured_destinations">추천 목적지</string>
+    <string name="wishlist_title">내 관심 목록</string>
+    <string name="no_favorites">아직 즐겨찾기가 없습니다</string>
+    <string name="explore_map">지도 탐색</string>
+    <string name="support_us">지원</string>
+    <string name="watch_video">동영상 보기</string>
+    <string name="view_map">지도 보기</string>
+    <string name="ai_guide">사파리 AI 가이드</string>
+    <string name="chat_placeholder">케냐에 대해 물어보세요...</string>
+    
+    <string name="welcome_title">Karibu Kenya</string>
+    <string name="welcome_subtitle">아프리카에서 가장 아름다운 곳으로 가는 관문</string>
+    <string name="welcome_explore">탐험 시작하기</string>
+    <string name="welcome_sign_in">로그인</string>
+    <string name="welcome_skip">게스트로 계속</string>
+    <string name="select_language">언어 선택</string>
+    
+    <string name="sign_in">로그인</string>
+    <string name="sign_up">가입하기</string>
+    <string name="sign_out">로그아웃</string>
+    <string name="sign_in_google">Google로 계속</string>
+    <string name="sign_in_email">이메일로 로그인</string>
+    <string name="sign_in_anonymous">게스트로 계속</string>
+    <string name="email_hint">이메일 주소</string>
+    <string name="password_hint">비밀번호</string>
+    <string name="or_divider">또는</string>
+    <string name="auth_error">인증에 실패했습니다. 다시 시도하십시오.</string>
+    <string name="no_account">계정이 없으신가요?</string>
+    <string name="have_account">이미 계정이 있으신가요?</string>
+    
+    <string name="settings">설정</string>
+    <string name="profile">프로필</string>
+    <string name="guest_user">게스트</string>
+    <string name="language">언어</string>
+    <string name="notifications">알림</string>
+    <string name="about">Tembea Kenya 소개</string>
+    <string name="privacy_policy">개인 정보 보호 정책</string>
+    <string name="guidelines">커뮤니티 가이드라인</string>
+    <string name="contact_us">문의하기</string>
+    <string name="app_version">앱 버전</string>
+    <string name="rate_app">앱 평가</string>
+    <string name="share_app">앱 공유</string>
+    <string name="dark_mode">다크 모드</string>
+    
+    <string name="about_title">Tembea Kenya 소개</string>
+    <string name="about_vision">우리의 비전</string>
+    <string name="about_vision_text">케냐의 풍부한 문화 유산, 멋진 풍경, 다양한 야생 동물을 탐험하기 위한 최고의 디지털 동반자가 되는 것입니다.</string>
+    <string name="about_goal">우리의 목표</string>
+    <string name="about_goal_text">포괄적이고 최신 목적지 정보를 제공하여 여행자를 진정한 케냐 경험과 연결하는 것입니다.</string>
+    
+    <string name="privacy_title">개인 정보 보호 정책</string>
+    <string name="privacy_text">최상의 여행 경험을 제공하는 데 필요한 최소한의 데이터만 수집합니다. 질문이 있으면 gideongeng@gmail.com 으로 문의하십시오.</string>
+    
+    <string name="guidelines_title">커뮤니티 가이드라인</string>
+    <string name="guidelines_text">Tembea Kenya 커뮤니티에 오신 것을 환영합니다! 상호 존중하고 야생 동물을 보호해 주십시오.</string>
+    
+    <string name="filter_all">모두</string>
+    <string name="filter_rating">평점</string>
+    <string name="filter_region">지역</string>
+    <string name="sort_by">정렬 기준</string>
+    <string name="sort_name">이름</string>
+    <string name="sort_rating">평점</string>
+    <string name="filter_results">%d개의 목적지 찾음</string>
+    <string name="clear_filters">필터 지우기</string>
+    
+    <string name="nav_home">홈</string>
+    <string name="nav_map">지도</string>
+    <string name="nav_ai">AI 가이드</string>
+    <string name="nav_wishlist">내 목록</string>
+</resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tembea Kenya</string>
+    <string name="default_web_client_id" translatable="false">624447839121-oq8tho5s5ekoqlr5s73vk55j98qv3a0s.apps.googleusercontent.com</string>
+    <string name="dashboard_title">TEMBEA KENYA</string>
+    <string name="dashboard_subtitle">اكتشف كنوز كينيا المخفية</string>
+    <string name="search_placeholder">البحث عن مارا، دياني...</string>
+    <string name="featured_destinations">وجهات مميزة</string>
+    <string name="wishlist_title">قائمتي المفضلة</string>
+    <string name="no_favorites">لا توجد مفضلات بعد</string>
+    <string name="explore_map">استكشف الخريطة</string>
+    <string name="support_us">دعم</string>
+    <string name="watch_video">شاهد الفيديو</string>
+    <string name="view_map">عرض الخريطة</string>
+    <string name="ai_guide">دليل سفاري الذكاء الاصطناعي</string>
+    <string name="chat_placeholder">اسألني عن كينيا...</string>
+    
+    <string name="welcome_title">Karibu Kenya</string>
+    <string name="welcome_subtitle">بوابتك إلى أجمل الوجهات في إفريقيا</string>
+    <string name="welcome_explore">ابدأ الاستكشاف</string>
+    <string name="welcome_sign_in">تسجيل الدخول</string>
+    <string name="welcome_skip">الاستمرار كضيف</string>
+    <string name="select_language">اختر لغتك</string>
+    
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="sign_up">إنشاء حساب</string>
+    <string name="sign_out">تسجيل الخروج</string>
+    <string name="sign_in_google">المتابعة باستخدام Google</string>
+    <string name="sign_in_email">تسجيل الدخول بالبريد الإلكتروني</string>
+    <string name="sign_in_anonymous">الاستمرار كضيف</string>
+    <string name="email_hint">البريد الإلكتروني</string>
+    <string name="password_hint">كلمة المرور</string>
+    <string name="or_divider">أو</string>
+    <string name="auth_error">فشلت المصادقة. يرجى المحاولة مرة أخرى.</string>
+    <string name="no_account">ليس لديك حساب؟</string>
+    <string name="have_account">لديك حساب بالفعل؟</string>
+    
+    <string name="settings">الإعدادات</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="guest_user">ضيف</string>
+    <string name="language">اللغة</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="about">حول Tembea Kenya</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="guidelines">إرشادات المجتمع</string>
+    <string name="contact_us">اتصل بنا</string>
+    <string name="app_version">إصدار التطبيق</string>
+    <string name="rate_app">قيم هذا التطبيق</string>
+    <string name="share_app">مشاركة التطبيق</string>
+    <string name="dark_mode">الوضع الداكن</string>
+    
+    <string name="about_title">حول Tembea Kenya</string>
+    <string name="about_vision">رؤيتنا</string>
+    <string name="about_vision_text">أن نكون الرفيق الرقمي النهائي لاستكشاف التراث الثقافي الغني لكينيا والمناظر الطبيعية الخلابة والحياة البرية المتنوعة.</string>
+    <string name="about_goal">هدفنا</string>
+    <string name="about_goal_text">تهدف Tembea Kenya إلى ربط المسافرين بالتجارب الكينية الأصيلة من خلال توفير معلومات شاملة ومحدثة.</string>
+    
+    <string name="privacy_title">سياسة الخصوصية</string>
+    <string name="privacy_text">نحن نجمع فقط الحد الأدنى من البيانات اللازمة لتزويدك بأفضل تجربة سفر. إذا كان لديك أي أسئلة، اتصل بنا على gideongeng@gmail.com.</string>
+    
+    <string name="guidelines_title">إرشادات المجتمع</string>
+    <string name="guidelines_text">مرحبًا بك في مجتمع Tembea Kenya! يرجى التحلي بالاحترام وحماية الحياة البرية.</string>
+    
+    <string name="filter_all">الكل</string>
+    <string name="filter_rating">التقييم</string>
+    <string name="filter_region">المنطقة</string>
+    <string name="sort_by">ترتيب حسب</string>
+    <string name="sort_name">الاسم</string>
+    <string name="sort_rating">التقييم</string>
+    <string name="filter_results">تم العثور على %d وجهة</string>
+    <string name="clear_filters">مسح عوامل التصفية</string>
+    
+    <string name="nav_home">الرئيسية</string>
+    <string name="nav_map">الخريطة</string>
+    <string name="nav_ai">دليل الذكاء الاصطناعي</string>
+    <string name="nav_wishlist">قائمتي</string>
+</resources>

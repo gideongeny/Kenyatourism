@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tembea Kenya</string>
+    <string name="default_web_client_id" translatable="false">624447839121-oq8tho5s5ekoqlr5s73vk55j98qv3a0s.apps.googleusercontent.com</string>
+    <string name="dashboard_title">TEMBEA KENYA</string>
+    <string name="dashboard_subtitle">Scopri i tesori nascosti del Kenya</string>
+    <string name="search_placeholder">Cerca Diani, Mara...</string>
+    <string name="featured_destinations">Destinazioni in primo piano</string>
+    <string name="wishlist_title">La mia lista</string>
+    <string name="no_favorites">Ancora nessun preferito</string>
+    <string name="explore_map">Esplora la mappa</string>
+    <string name="support_us">Supporto</string>
+    <string name="watch_video">Guarda il video</string>
+    <string name="view_map">Vedi Mappa</string>
+    <string name="ai_guide">Guida Safari AI</string>
+    <string name="chat_placeholder">Chiedimi informazioni sul Kenya...</string>
+    
+    <string name="welcome_title">Karibu Kenya</string>
+    <string name="welcome_subtitle">La tua porta d\'accesso alle destinazioni più belle dell\'Africa</string>
+    <string name="welcome_explore">Inizia a esplorare</string>
+    <string name="welcome_sign_in">Accedi</string>
+    <string name="welcome_skip">Continua come ospite</string>
+    <string name="select_language">Seleziona la tua lingua</string>
+    
+    <string name="sign_in">Accedi</string>
+    <string name="sign_up">Iscriviti</string>
+    <string name="sign_out">Esci</string>
+    <string name="sign_in_google">Continua con Google</string>
+    <string name="sign_in_email">Accedi con e-mail</string>
+    <string name="sign_in_anonymous">Continua come ospite</string>
+    <string name="email_hint">Indirizzo e-mail</string>
+    <string name="password_hint">Password</string>
+    <string name="or_divider">o</string>
+    <string name="auth_error">Autenticazione fallita. Riprova.</string>
+    <string name="no_account">Non hai un account?</string>
+    <string name="have_account">Hai già un account?</string>
+    
+    <string name="settings">Impostazioni</string>
+    <string name="profile">Profilo</string>
+    <string name="guest_user">Utente ospite</string>
+    <string name="language">Lingua</string>
+    <string name="notifications">Notifiche</string>
+    <string name="about">Informazioni su Tembea Kenya</string>
+    <string name="privacy_policy">Informativa sulla privacy</string>
+    <string name="guidelines">Linee guida della community</string>
+    <string name="contact_us">Contattaci</string>
+    <string name="app_version">Versione dell\'app</string>
+    <string name="rate_app">Valuta questa app</string>
+    <string name="share_app">Condividi app</string>
+    <string name="dark_mode">Modalità scura</string>
+    
+    <string name="about_title">Informazioni su Tembea Kenya</string>
+    <string name="about_vision">La nostra visione</string>
+    <string name="about_vision_text">Essere il compagno digitale definitivo per esplorare il ricco patrimonio culturale del Kenya, i paesaggi mozzafiato e la variegata fauna selvatica.</string>
+    <string name="about_goal">Il nostro obiettivo</string>
+    <string name="about_goal_text">Tembea Kenya mira a connettere i viaggiatori con autentiche esperienze keniote fornendo informazioni complete e aggiornate.</string>
+    
+    <string name="privacy_title">Informativa sulla privacy</string>
+    <string name="privacy_text">Raccogliamo solo i dati minimi necessari per offrirti la migliore esperienza di viaggio. Per domande, contattaci a gideongeng@gmail.com.</string>
+    
+    <string name="guidelines_title">Linee guida della community</string>
+    <string name="guidelines_text">Benvenuti nella community di Tembea Kenya! Siate rispettosi e proteggete la fauna selvatica.</string>
+    
+    <string name="filter_all">Tutti</string>
+    <string name="filter_rating">Valutazione</string>
+    <string name="filter_region">Regione</string>
+    <string name="sort_by">Ordina per</string>
+    <string name="sort_name">Nome</string>
+    <string name="sort_rating">Valutazione</string>
+    <string name="filter_results">%d destinazioni trovate</string>
+    <string name="clear_filters">Cancella filtri</string>
+    
+    <string name="nav_home">Home</string>
+    <string name="nav_map">Mappa</string>
+    <string name="nav_ai">Guida AI</string>
+    <string name="nav_wishlist">La mia lista</string>
+</resources>

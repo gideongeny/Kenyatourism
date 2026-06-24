@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">Tembea Kenya</string>
+    <string name="default_web_client_id" translatable="false">624447839121-oq8tho5s5ekoqlr5s73vk55j98qv3a0s.apps.googleusercontent.com</string>
+    <string name="dashboard_title">TEMBEA KENYA</string>
+    <string name="dashboard_subtitle">Discover Kenya\'s Hidden Treasures</string>
+    <string name="search_placeholder">Find Diani, Mara...</string>
+    <string name="featured_destinations">Featured Destinations</string>
+    <string name="wishlist_title">My Wishlist</string>
+    <string name="no_favorites">No favorites yet</string>
+    <string name="explore_map">Explore Map</string>
+    <string name="support_us">Support</string>
+    <string name="watch_video">Watch Video</string>
+    <string name="view_map">View Map</string>
+    <string name="ai_guide">Safari AI Guide</string>
+    <string name="chat_placeholder">Ask me about Kenya...</string>
+    
+    <!-- Welcome Screen -->
+    <string name="welcome_title">Karibu Kenya</string>
+    <string name="welcome_subtitle">Your Gateway to Africa\'s Most Beautiful Destinations</string>
+    <string name="welcome_explore">Start Exploring</string>
+    <string name="welcome_sign_in">Sign In</string>
+    <string name="welcome_skip">Continue as Guest</string>
+    <string name="select_language">Select Your Language</string>
+    
+    <!-- Auth -->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="sign_in_google">Continue with Google</string>
+    <string name="sign_in_email">Sign in with Email</string>
+    <string name="sign_in_anonymous">Continue as Guest</string>
+    <string name="email_hint">Email address</string>
+    <string name="password_hint">Password</string>
+    <string name="or_divider">or</string>
+    <string name="auth_error">Authentication failed. Please try again.</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="have_account">Already have an account?</string>
+    
+    <!-- Settings -->
+    <string name="settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="guest_user">Guest User</string>
+    <string name="language">Language</string>
+    <string name="notifications">Notifications</string>
+    <string name="about">About Tembea Kenya</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="guidelines">Community Guidelines</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="app_version">App Version</string>
+    <string name="rate_app">Rate This App</string>
+    <string name="share_app">Share App</string>
+    <string name="dark_mode">Dark Mode</string>
+    
+    <!-- About -->
+    <string name="about_title">About Tembea Kenya</string>
+    <string name="about_vision">Our Vision</string>
+    <string name="about_vision_text">To be the definitive digital companion for exploring Kenya\'s rich cultural heritage, stunning landscapes, and diverse wildlife — making every corner of this beautiful nation accessible to travelers worldwide.</string>
+    <string name="about_goal">Our Goal</string>
+    <string name="about_goal_text">Tembea Kenya aims to connect travelers with authentic Kenyan experiences by providing comprehensive, curated, and up-to-date information about destinations across all 47 counties. We believe every journey begins with inspiration, and we are here to spark yours.</string>
+    
+    <!-- Privacy -->
+    <string name="privacy_title">Privacy Policy</string>
+    <string name="privacy_text">Tembea Kenya respects your privacy. We collect only the minimum data necessary to provide you with the best travel experience:\n\n• Account data (email, display name) when you sign in\n• Your saved destinations and preferences\n• Anonymous usage analytics to improve the app\n\nWe never sell your personal information to third parties. Your data is stored securely using Google Firebase infrastructure. You can delete your account and all associated data at any time by contacting us.\n\nFor questions about your data, contact us at gideongeng@gmail.com</string>
+    
+    <!-- Guidelines -->
+    <string name="guidelines_title">Community Guidelines</string>
+    <string name="guidelines_text">Welcome to the Tembea Kenya community! To keep this a safe and positive space for all travelers:\n\n1. Be respectful — Treat fellow travelers and local communities with kindness\n2. Share authentic experiences — Post honest reviews and real photos\n3. Respect local cultures — Be mindful of traditions and customs\n4. Protect wildlife — Never disturb animals or their habitats\n5. Leave no trace — Help preserve Kenya\'s natural beauty\n6. Report issues — Flag inappropriate content or safety concerns\n\nViolations may result in account restrictions.</string>
+    
+    <!-- Filters -->
+    <string name="filter_all">All</string>
+    <string name="filter_rating">Rating</string>
+    <string name="filter_region">Region</string>
+    <string name="sort_by">Sort by</string>
+    <string name="sort_name">Name</string>
+    <string name="sort_rating">Rating</string>
+    <string name="filter_results">%d destinations found</string>
+    <string name="clear_filters">Clear Filters</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_map">Explore Map</string>
+    <string name="nav_ai">AI Guide</string>
+    <string name="nav_wishlist">My Wishlist</string>
+</resources>
