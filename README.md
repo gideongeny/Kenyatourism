@@ -97,6 +97,10 @@ Kenyatourism/
 └── build.gradle.kts
 ```
 
+## 🔒 Privacy Policy
+
+Read our full privacy policy here: [https://gideongeny.github.io/Kenyatourism/](https://gideongeny.github.io/Kenyatourism/)
+
 ## 👨‍💻 Author
 
 **Gideon Ngeno**
